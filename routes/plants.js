@@ -4,9 +4,17 @@ const fs = require('fs');
 
 
 // get all plants
-router.get('/', function(req, res) {
-  console.log();
-  res.send(`request: coucou`);
+router.get('/', function(req, res, next) {
+  // first we get the data
+  const plantData = fs.readFileSync('public/databases/plants.json', 'utf8');
+  const plants = JSON.parse(plantData);
+  // return the data to the request
+  console.log(`Plants: `, plants);
+  req.plants = plants;
+  next();
+}, (req, res) => {  
+  // then we render the page
+  res.render('plants', { plants: req.plants });
 });
 
 // try to add a new plant

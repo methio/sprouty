@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const hbs = require('hbs');
 
 const indexRouter = require('./routes/index');
 const plantsRouter = require('./routes/plants');
@@ -7,8 +8,10 @@ const plantsRouter = require('./routes/plants');
 const app = express();
 
 // view engine setup
+// app.engine('hbs', engine({ extname: '.hbs', defaultLayout: 'main', layoutsDir: path.join(__dirname, 'views') }));
+app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));

@@ -1,3 +1,6 @@
 #Sprouty
 
-node -> express -> jade (templating)
+node -> express -> handlebars (templating)
+-> nodemon
+
+npm run devStart 
