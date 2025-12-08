@@ -1,0 +1,17 @@
+[
+    {
+        "name": "Aloe Vera",
+        "scientific_name": "Aloe barbadensis miller",
+        "health": "good"
+    },
+    {
+        "name": "Snake Plant",
+        "scientific_name": "Sansevieria trifasciata",
+        "health": "excellent"
+    },
+    {
+        "name": "Peace Lily",
+        "scientific_name": "Spathiphyllum",
+        "health": "fair"
+    }
+]
