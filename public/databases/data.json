@@ -1,0 +1,36 @@
+{
+    "user":{
+        "id": 1,
+        "name": "John Doe",
+        "email": ""
+    }, 
+    "plants": [
+        {
+            "name": "Aloe Vera",
+            "scientific_name": "Aloe barbadensis miller",
+            "health": "good"
+        },
+        {
+            "name": "Snake Plant",
+            "scientific_name": "Sansevieria trifasciata",
+            "health": "excellent"
+        },
+        {
+            "name": "Peace Lily",
+            "scientific_name": "Spathiphyllum",
+            "health": "fair"
+        }
+    ],
+    "shop":[
+        {
+            "item": "blue pot",
+            "item_url": "./assets/images/pot_blue.jpg",
+            "price": 10
+        },
+        {
+            "item": "red pot",
+            "item_url": "./assets/images/pot_red.jpg",
+            "price": 5
+        }
+    ]
+}
