@@ -1,9 +1,14 @@
 const express = require('express');
 const path = require('path');
 const hbs = require('hbs');
+const fs = require('fs');
 
 const indexRouter = require('./routes/index');
 const plantsRouter = require('./routes/plants');
+
+// partials registration
+const menu = fs.readFileSync('./views/partials/menu.hbs').toString();
+hbs.registerPartial('menu', menu);
 
 const app = express();
 
