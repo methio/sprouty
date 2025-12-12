@@ -8,12 +8,14 @@ const plantsRouter = require('./routes/plants');
 
 // partials registration
 const menu = fs.readFileSync('./views/partials/menu.hbs').toString();
+const ressources = fs.readFileSync('./views/partials/ressources.hbs').toString();
+
 hbs.registerPartial('menu', menu);
+hbs.registerPartial('ressources', ressources);
 
 const app = express();
 
 // view engine setup
-// app.engine('hbs', engine({ extname: '.hbs', defaultLayout: 'main', layoutsDir: path.join(__dirname, 'views') }));
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
 
