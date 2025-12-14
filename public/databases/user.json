@@ -1,4 +1,1 @@
-{
-    "name": "John Doe",
-    "age": 30
-}
+{"name":"John Doe","age":30,"inventory":[null,null,null,{"name":"kirby pot","path":"/images/shop/kirby.png","price":19,"id":0,"stock":1}],"money":-19}

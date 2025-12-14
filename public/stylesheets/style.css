@@ -11,3 +11,15 @@ a {
 p {
   color: sandybrown;
 }
+
+/*****/
+
+.flex {
+  display: flex;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.gap-1 {
+  gap: 1em;
+}

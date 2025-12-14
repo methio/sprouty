@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />  
+    <title>Shop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
+  </head>
+  <body>
+    
+    <h1>Shop</h1>
+
+    <div id="shop-container" class="flex flex-wrap gap-1">
+        {{#each shop}}
+            <div class="shop-item">
+                <h3>{{this.name}}</h3>
+                <img src="{{this.path}}" alt="{{this.name}}" width="100" />
+                <p>Price: {{this.price}}sprouty</p>
+                <p>Stock: {{this.stock}}</p>
+                <button popovertarget="my-popover">Buy</button>
+                <div popover id="my-popover">
+                    <p>Do you want to buy {{this.name}}?</p>
+                    <form action="/shop/{{this.id}}" method="POST">
+                        <button type="submit">Yes, buy for {{this.price}} sprouty</button>
+                    </form>
+                </div>
+            </div>
+
+        {{/each}}
+    </div>
+  </body>
+</html>
