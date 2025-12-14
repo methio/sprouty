@@ -42,9 +42,7 @@ router.post('/:id', function(req, res) {
     fs.writeFileSync('public/databases/shop.json', JSON.stringify(shop), 'utf8');
     
     // then we render the page
-    res.render('shop', { shop: shop });
+    res.redirect('/shop');
 });
-
-
 
 module.exports = router;

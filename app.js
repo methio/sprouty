@@ -3,6 +3,11 @@ const path = require('path');
 const hbs = require('hbs');
 const fs = require('fs');
 
+// hbs helper to convert object to JSON string
+hbs.registerHelper('json', function(context) {
+  return JSON.stringify(context);
+});
+
 const indexRouter = require('./routes/index');
 const plantsRouter = require('./routes/plants');
 const shopRouter = require('./routes/shop');
