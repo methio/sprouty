@@ -3,8 +3,15 @@ const path = require('path');
 const hbs = require('hbs');
 const fs = require('fs');
 
+// hbs helper to convert object to JSON string
+hbs.registerHelper('json', function(context) {
+  return JSON.stringify(context);
+});
+
 const indexRouter = require('./routes/index');
 const plantsRouter = require('./routes/plants');
+const shopRouter = require('./routes/shop');
+
 
 // partials registration
 const menu = fs.readFileSync('./views/partials/menu.hbs').toString();
@@ -25,6 +32,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/plants', plantsRouter);
+app.use('/shop', shopRouter);
 
 app.listen(3000, () => {
   console.log('Server is running on http://localhost:3000');

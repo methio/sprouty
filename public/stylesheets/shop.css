@@ -1,0 +1,8 @@
+.out-of-stock{
+    position: relative;
+    top: -50%;
+    background-color: red;
+    transform: rotate(-30deg);
+    text-align: center;
+    padding: .5em
+}

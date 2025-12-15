@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />  
+    <title>Shop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/shop.css" />
+
+  </head>
+  <body>
+    
+    <h1>Shop</h1>
+
+    <div id="shop-container" class="flex flex-wrap gap-1">
+        {{#each shop}}
+            <div class="shop-item">
+                <h3>{{this.name}}</h3>
+                <img src="{{this.path}}" alt="{{this.name}}" width="100" />
+                <p>Price: {{this.price}}sprouty</p>
+                <p>Stock: {{this.stock}}</p>                
+                {{#if this.stock}}
+                <button popovertarget="my-popover-{{this.id}}">Buy</button>
+                <div popover id="my-popover-{{this.id}}">
+                    <p>Do you want to buy {{this.name}}?</p>
+                    <form action="/shop/{{this.id}}" method="POST">
+                        <button type="submit">Yes, buy for {{this.price}} sprouty</button>
+                    </form>
+                </div>
+                {{else}}
+                <button popovertarget="my-popover-{{this.id}}" class="disabled">Buy</button>
+                <p class="out-of-stock">out of stock</p>
+                {{/if}}
+            </div>
+        {{/each}}
+    </div>
+
+    {{> menu}}
+
+
+    <script>
+        // Example of using the json helper to log shop data
+        //const shopData = {{{json shop}}};
+        //console.log('Shop Data:', shopData);
+    </script>
+
+  </body>
+</html>

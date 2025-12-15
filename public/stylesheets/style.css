@@ -11,3 +11,19 @@ a {
 p {
   color: sandybrown;
 }
+
+/** UTLITIES **/
+
+.flex {
+  display: flex;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.gap-1 {
+  gap: 1em;
+}
+
+.disabled{
+  opacity: 40%;
+}
