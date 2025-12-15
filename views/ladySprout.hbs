@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />  
+    <title>ladySprout</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
+
+  </head>
+  <body >
+    <h1>LadySprout page</h1>
+
+    <div>
+      <h3>{{question.question}}</h3>
+      {{#each question.answers}}
+        <form action="/ladySprout/{{this}}" method="POST">
+            <button type="submit">{{this}}</button>
+        </form>
+      {{/each}}
+    </div>
+
+    {{> menu}}
+    
+  </body>
+</html>

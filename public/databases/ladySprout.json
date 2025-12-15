@@ -1,0 +1,12 @@
+{
+    "questions":    [
+                        {
+                            "question": "What’s happening with your plant?",
+                            "answers": ["Dark spots", "Mold", "Pests"]
+                        },{
+                            "question": "What do the pests look like?",
+                            "answers": ["Tiny White Bugs", "Black bugs", "Tiny Red Dots", "Small Flies"]
+                        }
+                    ],
+    "diagnostic": "Your plant has Spider Mites. For more information, please visit the Encyclopedia section."
+}
