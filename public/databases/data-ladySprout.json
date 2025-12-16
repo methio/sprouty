@@ -33,22 +33,91 @@
                                 {
                                     "answer": "Spots",
                                     "id_of_next_question": 4
+                                },
+                                {
+                                    "answer": "Soft/Mushy",
+                                    "id_of_next_question": 6
+                                },
+                                {
+                                    "answer": "Wrinkled",
+                                    "id_of_next_question": 5
+                                },
+                                {
+                                    "answer": "Pests",
+                                    "id_of_next_question": 7
+                                },
+                                {
+                                    "answer": "I don't know",
+                                    "id_of_next_question": 14
                                 }
+
                             ]
                         },{
-                            "questions":[
-                                {
-                                    "question":"What do they look like?",
-                                    "question_id": 4
-                                }
-                            ],
+                            "question_id": 4,
+                            "question": "What do they look like?",
                             "answers":[
                                 {
                                     "answer": "Hard brown patches",
                                     "encyclopedia_id": "edema"
+                                },
+                                {
+                                    "answer": "White dry patches",
+                                    "encyclopedia_id": "sunburn"
+                                },
+                                {
+                                    "answer": "Dark sunken spots",
+                                    "encyclopedia_id": "fungal_infection"
+                                },
+                                {
+                                    "answer": "Black spots spreading",
+                                    "encyclopedia_id": "fungal_infection"
+                                },
+                                {
+                                    "answer": "I don't know",
+                                    "id_of_next_question": 14
                                 }
                             ]
 
+                        },{
+                            "question_id": 5,
+                            "question": "Has the plant been repotted recently?",
+                            "answers":[
+                                {
+                                    "answer": "Yes",
+                                    "encyclopedia_id": "transplant_shock"
+                                },
+                                {
+                                    "answer": "No",
+                                    "id_of_next_question": 13
+                                }
+                            ]
+
+                        },{
+                            "question_id": 13,
+                            "question": "What is the soil status?",
+                            "answers":[
+                                {
+                                    "answer": "Dry",
+                                    "encyclopedia_id": "underwatering"
+                                },
+                                {
+                                    "answer": "Moist",
+                                    "encyclopedia_id": "root_damage"
+                                }
+                            ]
+                        },{
+                            "question_id": 6,
+                            "question": "Where is it mushy?",
+                            "answers":[
+                                {
+                                    "answer": "Dry",
+                                    "encyclopedia_id": "underwatering"
+                                },
+                                {
+                                    "answer": "Moist",
+                                    "encyclopedia_id": "root_damage"
+                                }
+                            ]
                         }
     ]
 }
