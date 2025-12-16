@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Calque_1" data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 456.31 214.74">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #6b3324;
+      }
+
+      .cls-2 {
+        fill: #713027;
+      }
+
+      .cls-3 {
+        fill: #ca9063;
+      }
+
+      .cls-4 {
+        fill: #9d603e;
+      }
+
+      .cls-5 {
+        fill: #f2cf93;
+      }
+
+      .cls-6 {
+        fill: #75382d;
+      }
+
+      .cls-7 {
+        fill: #712f26;
+      }
+
+      .cls-8 {
+        fill: #7f4033;
+      }
+
+      .cls-9 {
+        fill: #72311c;
+      }
+
+      .cls-10 {
+        fill: #814032;
+      }
+
+      .cls-11 {
+        fill: #9f5e3e;
+      }
+
+      .cls-12 {
+        fill: #722f26;
+      }
+    </style>
+  </defs>
+  <rect class="cls-9" x="429.46" y="187.9" width="13.42" height="13.42"/>
+  <rect class="cls-8" x="429.46" y="174.47" width="13.42" height="13.42"/>
+  <rect class="cls-6" x="442.89" y="174.47" width="13.42" height="13.42"/>
+  <rect class="cls-11" x="429.46" y="161.05" width="13.42" height="13.42"/>
+  <polygon class="cls-1" points="456.31 26.85 456.31 174.47 442.89 174.47 442.89 161.05 429.46 161.05 429.46 147.63 442.89 147.63 442.89 26.85 456.31 26.85"/>
+  <rect class="cls-1" x="429.46" y="13.42" width="13.42" height="13.42"/>
+  <rect class="cls-7" x="26.85" y="201.32" width="402.62" height="13.42"/>
+  <rect class="cls-7" x="13.42" y="187.9" width="13.42" height="13.42"/>
+  <rect class="cls-10" x="26.85" y="187.9" width="402.62" height="13.42"/>
+  <rect class="cls-10" x="13.42" y="174.47" width="13.42" height="13.42"/>
+  <rect class="cls-4" x="26.85" y="174.47" width="402.62" height="13.42"/>
+  <rect class="cls-4" x="13.42" y="161.05" width="13.42" height="13.42"/>
+  <rect class="cls-12" x="26.85" y="161.05" width="402.62" height="13.42"/>
+  <polygon class="cls-5" points="442.89 26.85 442.89 147.63 429.46 147.63 429.46 161.05 26.85 161.05 26.85 147.63 13.42 147.63 13.42 120.78 26.85 120.78 26.85 134.21 40.25 134.21 40.25 147.63 416.06 147.63 416.06 134.21 429.46 134.21 429.46 26.85 442.89 26.85"/>
+  <polygon class="cls-2" points="26.85 147.63 26.85 161.05 13.42 161.05 13.42 187.9 0 187.9 0 26.85 13.42 26.85 13.42 147.63 26.85 147.63"/>
+  <rect class="cls-2" x="13.42" y="13.42" width="13.42" height="13.42"/>
+  <polygon class="cls-3" points="429.46 13.42 429.46 134.21 416.06 134.21 416.06 147.63 40.25 147.63 40.25 134.21 26.85 134.21 26.85 120.78 13.42 120.78 13.42 26.85 26.85 26.85 26.85 13.42 429.46 13.42"/>
+  <rect class="cls-2" x="26.85" width="402.62" height="13.42"/>
+</svg>

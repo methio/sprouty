@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Warstwa_1" data-name="Warstwa 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 277.8 170.08">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #eac086;
+      }
+
+      .cls-2 {
+        fill: #62221e;
+      }
+
+      .cls-3 {
+        fill: #b07242;
+      }
+
+      .cls-4 {
+        fill: #ca9158;
+      }
+    </style>
+  </defs>
+  <g>
+    <g>
+      <rect class="cls-2" x="22.68" y="147.4" width="153.07" height="5.67"/>
+      <rect class="cls-2" x="11.34" y="141.73" width="11.34" height="5.67"/>
+      <rect class="cls-3" x="22.68" y="141.73" width="153.07" height="5.67"/>
+      <rect class="cls-4" x="17.01" y="136.06" width="158.74" height="5.67"/>
+      <rect class="cls-2" x="5.67" y="130.39" width="5.67" height="11.34"/>
+      <rect class="cls-3" x="11.34" y="130.39" width="5.67" height="11.34"/>
+      <rect class="cls-3" x="5.67" y="124.72" width="5.67" height="5.67"/>
+      <rect class="cls-4" x="11.34" y="124.72" width="5.67" height="5.67"/>
+      <rect class="cls-4" x="5.67" y="119.05" width="5.67" height="5.67"/>
+      <rect class="cls-2" y="22.68" width="5.67" height="107.71"/>
+      <rect class="cls-2" x="5.67" y="11.34" width="5.67" height="11.34"/>
+      <rect class="cls-2" x="11.34" y="5.67" width="11.34" height="5.67"/>
+      <polygon class="cls-1" points="260.79 22.68 260.79 130.39 255.12 130.39 255.12 136.06 204.1 136.06 204.1 141.73 198.43 141.73 198.43 153.07 192.76 153.07 192.76 158.74 181.42 158.74 181.42 153.07 175.75 153.07 175.75 136.06 17.01 136.06 17.01 124.72 11.34 124.72 11.34 119.05 5.67 119.05 5.67 22.68 11.34 22.68 11.34 11.34 22.68 11.34 22.68 5.67 243.78 5.67 243.78 11.34 255.12 11.34 255.12 22.68 260.79 22.68"/>
+      <rect class="cls-2" x="22.68" width="232.44" height="5.67"/>
+    </g>
+    <g>
+      <rect class="cls-2" x="181.42" y="158.74" width="5.67" height="5.67"/>
+      <rect class="cls-3" x="187.09" y="158.74" width="5.67" height="5.67"/>
+      <rect class="cls-2" x="192.76" y="158.74" width="5.67" height="5.67"/>
+      <rect class="cls-2" x="175.75" y="153.07" width="5.67" height="5.67"/>
+      <rect class="cls-3" x="192.76" y="153.07" width="5.67" height="5.67"/>
+      <rect class="cls-2" x="198.43" y="153.07" width="5.67" height="5.67"/>
+      <rect class="cls-3" x="198.43" y="147.4" width="5.67" height="5.67"/>
+      <rect class="cls-2" x="204.1" y="147.4" width="51.02" height="5.67"/>
+      <rect class="cls-4" x="198.43" y="141.73" width="5.67" height="5.67"/>
+      <rect class="cls-3" x="204.1" y="141.73" width="51.02" height="5.67"/>
+      <rect class="cls-2" x="255.12" y="141.73" width="11.34" height="5.67"/>
+      <polygon class="cls-4" points="260.79 130.39 260.79 141.73 204.1 141.73 204.1 136.06 255.12 136.06 255.12 130.39 260.79 130.39"/>
+      <rect class="cls-2" x="266.46" y="130.39" width="5.67" height="11.34"/>
+      <rect class="cls-3" x="260.79" y="130.39" width="5.67" height="11.34"/>
+      <rect class="cls-3" x="266.46" y="22.68" width="5.67" height="107.71"/>
+      <rect class="cls-2" x="272.13" y="22.68" width="5.67" height="107.71"/>
+      <rect class="cls-4" x="255.12" y="11.34" width="5.67" height="11.34"/>
+      <rect class="cls-4" x="260.79" y="11.34" width="5.67" height="119.05"/>
+      <rect class="cls-2" x="266.46" y="11.34" width="5.67" height="11.34"/>
+      <rect class="cls-4" x="243.78" y="5.67" width="5.67" height="5.67"/>
+      <rect class="cls-3" x="249.45" y="5.67" width="5.67" height="5.67"/>
+      <rect class="cls-2" x="255.12" y="5.67" width="11.34" height="5.67"/>
+    </g>
+  </g>
+  <rect class="cls-2" x="187.09" y="164.41" width="5.67" height="5.67"/>
+</svg>

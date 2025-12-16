@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Calque_1" data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 481.89 34.01">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #f2cf93;
+      }
+
+      .cls-2 {
+        fill: #63211f;
+      }
+
+      .cls-3 {
+        fill: #7e432b;
+      }
+
+      .cls-4 {
+        fill: #cc905d;
+      }
+
+      .cls-5 {
+        fill: #63281f;
+      }
+
+      .cls-6 {
+        fill: #642124;
+      }
+
+      .cls-7 {
+        fill: #9c603e;
+      }
+    </style>
+  </defs>
+  <rect class="cls-5" x="5.67" y="28.34" width="470.55" height="5.67"/>
+  <rect class="cls-3" x="5.67" y="22.68" width="470.55" height="5.66"/>
+  <rect class="cls-7" x="5.67" y="17.01" width="470.55" height="5.67"/>
+  <rect class="cls-2" y="11.34" width="5.67" height="17"/>
+  <polygon class="cls-4" points="476.22 11.34 476.22 17.01 5.67 17.01 5.67 11.34 11.33 11.34 11.33 5.67 470.55 5.67 470.55 11.34 476.22 11.34"/>
+  <polygon class="cls-1" points="481.89 5.67 481.89 17.01 476.22 17.01 476.22 11.34 470.55 11.34 470.55 5.67 11.33 5.67 11.33 11.34 0 11.34 0 5.67 5.67 5.67 5.67 0 476.22 0 476.22 5.67 481.89 5.67"/>
+  <rect class="cls-6" x="476.22" y="17.01" width="5.67" height="11.33"/>
+</svg>
