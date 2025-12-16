@@ -1,0 +1,75 @@
+{
+    "plants": [
+        {
+            "family": "Monstera",
+            "name": "",
+            "sensor_number": "",
+            "health": "",
+            "water_level": "",
+            "light_level": "",
+            "temp_level": "",
+            "money": "",
+            "pot": "",
+            "background": "",
+            "shelf": ""
+
+        },
+        {
+            "family": "Sterlizia",
+            "name": "",
+            "sensor_number": "",
+            "health": "",
+            "water_level": "",
+            "light_level": "",
+            "temp_level": "",
+            "money": "",
+            "pot": "",
+            "background": "",
+            "shelf": ""
+
+        },
+        {
+            "family": "Cactus",
+            "name": "",
+            "sensor_number": "",
+            "health": "",
+            "water_level": "",
+            "light_level": "",
+            "temp_level": "",
+            "money": "",
+            "pot": "",
+            "background": "",
+            "shelf": ""
+
+        },
+        {
+            "family": "Peperomia",
+            "name": "",
+            "sensor_number": "",
+            "health": "",
+            "water_level": "",
+            "light_level": "",
+            "temp_level": "",
+            "money": "",
+            "pot": "",
+            "background": "",
+            "shelf": ""
+
+        },
+        {
+            "family": "Succulent",
+            "name": "",
+            "sensor_number": "",
+            "health": "",
+            "water_level": "",
+            "light_level": "",
+            "temp_level": "",
+            "money": "",
+            "pot": "",
+            "background": "",
+            "shelf": ""
+
+        }
+    ]
+}
+    

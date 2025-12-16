@@ -1,0 +1,50 @@
+{
+"shop":[
+        {
+            "item": "blue pot",
+            "item_url": "",
+            "price": 10
+        },
+        {
+            "item": "green pot",
+            "item_url": "",
+            "price": 20
+        },
+        {
+            "item": "red pot",
+            "item_url": "",
+            "price": 30
+        },
+        {
+            "item": "grey background",
+            "item_url": "",
+            "price": 50
+        },
+        {
+            "item": "brown background",
+            "item_url": "",
+            "price": 60
+        },
+        {
+            "item": "blue background",
+            "item_url": "",
+            "price": 70
+        },
+        {
+            "item": "brown shelf",
+            "item_url": "",
+            "price": 40
+        },
+        {
+            "item": "green shelf",
+            "item_url": "",
+            "price": 50
+        },
+        {
+            "item": "blue shelf",
+            "item_url": "",
+            "price": 70
+        }
+    ]
+
+}
