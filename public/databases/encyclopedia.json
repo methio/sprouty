@@ -5,6 +5,7 @@
     "diseases": [
         {
             "disease": "Powdery Mildew",
+            "anchor": "powdery-mildew",
             "description": "A fungal disease that appears as white powdery spots on leaves and stems.",
             "symptoms": [
                 "White powdery spots on leaves",
@@ -15,6 +16,7 @@
         },
         {
             "disease": "Root Rot",
+            "anchor": "root-rot",
             "description": "A condition caused by overwatering leading to fungal growth in the roots.",
             "symptoms": [
                 "Wilting despite adequate watering",
@@ -22,6 +24,61 @@
                 "Mushy or blackened roots"
             ],
             "treatment": "Reduce watering, improve soil drainage, and repot the plant in fresh soil if needed."
+        },
+        {
+            "disease": "Leaf Spot",
+            "anchor": "leaf-spot",
+            "description": "Fungal or bacterial infection causing spots on leaves.",
+            "symptoms": [
+                "Brown or black spots on leaves",
+                "Yellow halos around spots",
+                "Leaf drop"
+            ],
+            "treatment": "Remove affected leaves, avoid overhead watering, and apply appropriate fungicides or bactericides."
+        },
+        {
+            "disease": "Aphid Infestation",
+            "anchor": "aphid-infestation",
+            "description": "A common pest problem where small insects feed on plant sap.",
+            "symptoms": [
+                "Sticky residue on leaves",
+                "Distorted or curled leaves",
+                "Presence of small green, black, or white insects"
+            ],
+            "treatment": "Use insecticidal soap, neem oil, or introduce natural predators like ladybugs."
+        },
+        {
+            "disease": "Spider Mites",
+            "anchor": "spider-mites",
+            "description": "Tiny arachnids that feed on plant sap, causing damage to leaves.",
+            "symptoms": [
+                "Fine webbing on leaves",
+                "Yellow or bronze speckling on leaves",
+                "Leaf drop"
+            ],
+            "treatment": "Increase humidity, spray with water to dislodge mites, and use miticides if necessary."
+        },
+        {
+            "disease": "Blight",
+            "anchor": "blight",
+            "description": "A rapid and complete chlorosis, browning, then death of plant tissues.",
+            "symptoms": [
+                "Sudden wilting of leaves and stems",
+                "Dark lesions on stems and leaves",
+                "Rapid plant decline"
+            ],
+            "treatment": "Remove and destroy affected plant parts, improve air circulation, and apply fungicides."
+        },
+        {
+            "disease": "Rust",
+            "anchor": "rust",
+            "description": "A fungal disease that causes rust-colored pustules on leaves and stems.",
+            "symptoms": [
+                "Orange or rust-colored spots on leaves",
+                "Premature leaf drop",
+                "Reduced plant vigor"
+            ],
+            "treatment": "Remove affected leaves, avoid overhead watering, and apply fungicides."
         }
     ]
 }
