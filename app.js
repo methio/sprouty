@@ -12,6 +12,8 @@ const indexRouter = require('./routes/index');
 const plantsRouter = require('./routes/plants');
 const shopRouter = require('./routes/shop');
 const ladySproutRouter = require('./routes/ladySprout');
+const encyclopediaRouter = require('./routes/encyclopedia');
+
 
 
 
@@ -36,6 +38,7 @@ app.use('/', indexRouter);
 app.use('/plants', plantsRouter);
 app.use('/shop', shopRouter);
 app.use('/ladySprout', ladySproutRouter);
+app.use('/encyclopedia', encyclopediaRouter);
 
 app.listen(3000, () => {
   console.log('Server is running on http://localhost:3000');
