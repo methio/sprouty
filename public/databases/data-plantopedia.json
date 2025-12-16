@@ -1,0 +1,27 @@
+{
+    "title": "Encyclopedia Database",
+    "description": "A comprehensive database of plant species with detailed information on their characteristics, habitats, and care instructions.",
+    "version": "1.0.0",
+    "diseases": [
+        {
+            "disease": "Powdery Mildew",
+            "description": "A fungal disease that appears as white powdery spots on leaves and stems.",
+            "symptoms": [
+                "White powdery spots on leaves",
+                "Distorted leaf growth",
+                "Premature leaf drop"
+            ],
+            "treatment": "Remove affected leaves, improve air circulation, and apply fungicides if necessary."
+        },
+        {
+            "disease": "Root Rot",
+            "description": "A condition caused by overwatering leading to fungal growth in the roots.",
+            "symptoms": [
+                "Wilting despite adequate watering",
+                "Yellowing leaves",
+                "Mushy or blackened roots"
+            ],
+            "treatment": "Reduce watering, improve soil drainage, and repot the plant in fresh soil if needed."
+        }
+    ]
+}
