@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />  
+    <title>My Awesome App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/home.css" />
+
+  </head>
+  <body class="flex column space-between">
+    <h1>Welcome on Sprouty 🌱</h1>
+
+    <div class="flex column flex-end align-centered" id="cta-container">
+      <a href="/plants">
+        <img src="/images/home/start.jpg" alt="start button" width="200">
+      </a>
+
+      <button popovertarget="my-popover">
+        <img src="/images/home/about.jpg" alt="info" width="200">
+      </button>
+      <div popover id="my-popover">
+        <h3>How it works?</h3>
+        <p>Sprouty pairs with your real plants to help you care for them. It keeps an eye on water, light and temperature. It sends alerts when something needs adjusting.</p>
+        <p id="close-popover">Got it!</p>
+      </div>
+    </div>
+
+    <script>
+      // close the popover with Got it button
+      const bClose = document.querySelector("#close-popover");
+      bClose.addEventListener( "click", (event) => {
+        document.querySelector("#my-popover").hidePopover();
+      })
+    </script>
+    
+  </body>
+</html>
