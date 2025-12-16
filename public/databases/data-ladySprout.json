@@ -48,7 +48,7 @@
                                 },
                                 {
                                     "answer": "I don't know",
-                                    "id_of_next_question": 14
+                                    "id_of_next_question": 17
                                 }
 
                             ]
@@ -107,15 +107,292 @@
                             ]
                         },{
                             "question_id": 6,
-                            "question": "Where is it mushy?",
+                            "question": "Where is it soft?",
                             "answers":[
                                 {
-                                    "answer": "Dry",
+                                    "answer": "Soil line",
+                                    "encyclopedia_id": "root_rot"
+                                },
+                                {
+                                    "answer": "Multiple places",
+                                    "encyclopedia_id": "internal_rot"
+                                },
+                                {
+                                    "answer": "New growth",
+                                    "id_of_next_question": 12
+                                },
+                                {
+                                    "answer": "I don't know",
+                                    "id_of_next_question": 14
+                                }
+
+                            ]
+                        },{
+                            "question_id": 12,
+                            "question": "Any black/grey fuzz?",
+                            "answers":[
+                                {
+                                    "answer": "Yes",
+                                    "encyclopedia_id": "fungal_rot"
+                                },
+                                {
+                                    "answer": "Some",
+                                    "encyclopedia_id": "fungal_rot"
+                                },
+                                {
+                                    "answer": "No",
+                                    "encyclopedia_id": "root_damage"
+                                },
+                                {
+                                    "answer": "Not sure",
+                                    "encyclopedia_id": "root_damage"
+                                },
+                                {
+                                    "answer": "I don't know",
+                                    "encyclopedia_id": "root_damage"
+                                }
+                            ]
+                        },{
+                            "question_id": 7,
+                            "question": "What do they look like?",
+                            "answers":[
+                                {
+                                    "answer": "White cotton clumps",
+                                    "encyclopedia_id": "mealybugs"
+                                },
+                                {
+                                    "answer": "Fine webbing",
+                                    "encyclopedia_id": "spider_mites"
+                                },
+                                {
+                                    "answer": "Hard bumps",
+                                    "encyclopedia_id": "scale"
+                                },
+                                {
+                                    "answer": "Sticky residue",
+                                    "encyclopedia_id": "sap_pests"
+                                },
+                                {
+                                    "answer": "I don't know",
+                                    "id_of_next_question": 14
+                                }
+                            ]
+                        },
+                        {
+                            "question_id": 3,
+                            "question": "What are the main symptoms?",
+                            "answers":[
+                                {
+                                    "answer": "Yellowing",
+                                    "id_of_next_question": 8
+                                },
+                                {
+                                    "answer": "Brown/black spots",
+                                    "id_of_next_question": 9
+                                },
+                                {
+                                    "answer": "Wilting/drooping",
+                                    "id_of_next_question": 10
+                                },
+                                {
+                                    "answer": "Pests",
+                                    "id_of_next_question": 11
+                                },
+                                {
+                                    "answer": "I don't know",
+                                    "id_of_next_question": 17
+                                }
+                            ]
+                        },
+                        {
+                            "question_id": 8,
+                            "question": "Which option best describes how the yellowing looks like?",
+                            "answers":[
+                                {
+                                    "answer": "Lower leaves first",
+                                    "id_of_next_question": 15
+                                },
+                                {
+                                    "answer": "New leaves first",
+                                    "encyclopedia_id": "nutrient_deficiency"
+                                },
+                                {
+                                    "answer": "Yellow and brown edges",
+                                    "id_of_next_question": 16
+                                },
+                                {
+                                    "answer": "Yellow irregular patches",
+                                    "encyclopedia_id": "pest_damage"
+                                },
+                                {
+                                    "answer": "I don't know",
+                                    "id_of_next_question": 17
+                                }
+                            ]
+                        },
+                        {
+                            "question_id": 15,
+                            "question": "What is the soil status?",
+                            "answers":[
+                                {
+                                    "answer": "Often wet",
+                                    "encyclopedia_id": "overwatering"
+                                },
+                                {
+                                    "answer": "Often dry",
                                     "encyclopedia_id": "underwatering"
                                 },
                                 {
-                                    "answer": "Moist",
-                                    "encyclopedia_id": "root_damage"
+                                    "answer": "Normal",
+                                    "encyclopedia_id": "natural_leave_aging"
+                                },
+                                {
+                                    "answer": "Recently changed",
+                                    "encyclopedia_id": "natural_leave_aging"
+                                },
+                                {
+                                    "answer": "I don't know",
+                                    "encyclopedia_id": "natural_leave_aging"
+                                }
+                            ]
+                        },
+                        {
+                            "question_id": 16,
+                            "question": "What do the brown edges feel like?",
+                            "answers":[
+                                {
+                                    "answer": "Crispy",
+                                    "encyclopedia_id": "low_humidity"
+                                },
+                                {
+                                    "answer": "Soft",
+                                    "encyclopedia_id": "overwatering"
+                                },
+                                {
+                                    "answer": "Both",
+                                    "encyclopedia_id": "overwatering"
+                                }
+                            ]
+                        },
+                        {
+                            "question_id": 17,
+                            "question": "Which of these has the plant been exposed to recently?",
+                            "answers":[
+                                {
+                                    "answer": "Low light",
+                                    "encyclopedia_id": "lowered_resilience"
+                                },
+                                {
+                                    "answer": "Direct sun",
+                                    "encyclopedia_id": "sunburn"
+                                },
+                                {
+                                    "answer": "Cold drafts",
+                                    "encyclopedia_id": "lowered_resilience"
+                                },
+                                {
+                                    "answer": "Recently repotted",
+                                    "encyclopedia_id": "transplant_shock"
+                                }
+                            ]
+                        },
+                        {
+                            "question_id": 14,
+                            "question": "Which of these best describes the plant conditions?",
+                            "answers":[
+                                {
+                                    "answer": "Soil often wet",
+                                    "encyclopedia_id": "overwatering"
+                                },
+                                {
+                                    "answer": "Soil often dry",
+                                    "encyclopedia_id": "underwatering"
+                                },
+                                {
+                                    "answer": "Low light",
+                                    "encyclopedia_id": "lowered_resilience"
+                                },
+                                {
+                                    "answer": "Recently moved",
+                                    "encyclopedia_id": "transplant_shock"
+                                }
+                            ]
+                        },
+                        {
+                            "question_id": 9,
+                            "question": "What are the details of the spots?",
+                            "answers":[
+                                {
+                                    "answer": "Dark spots with yellow halo",
+                                    "encyclopedia_id": "bacterial_leaf_spot"
+                                },
+                                {
+                                    "answer": "Water sokaed spots",
+                                    "encyclopedia_id": "bacterial_infection"
+                                },
+                                {
+                                    "answer": "Powdery white coating",
+                                    "encyclopedia_id": "powdery_mildew"
+                                },
+                                {
+                                    "answer": "Dry tan patch",
+                                    "encyclopedia_id": "sunburn"
+                                },
+                                {
+                                    "answer": "I don't know",
+                                    "id_of_next_question": 17
+                                }
+                            ]
+                        },
+                        {
+                            "question_id": 10,
+                            "question": "When does the plant look droppy or wilted?",
+                            "answers":[
+                                {
+                                    "answer": "Soil wet",
+                                    "encyclopedia_id": "overwatering"
+                                },
+                                {
+                                    "answer": "Soil dry",
+                                    "encyclopedia_id": "underwatering"
+                                },
+                                {
+                                    "answer": "Droppy after move",
+                                    "encyclopedia_id": "transplant_shock"
+                                },
+                                {
+                                    "answer": "Droppy in heat",
+                                    "encyclopedia_id": "overheating"
+                                },
+                                {
+                                    "answer": "I don't know",
+                                    "id_of_next_question": 17
+                                }
+                            ]
+                        },
+                        {
+                            "question_id": 11,
+                            "question": "What do the pests look like?",
+                            "answers":[
+                                {
+                                    "answer": "Fine webbing",
+                                    "encyclopedia_id": "spider_mites"
+                                },
+                                {
+                                    "answer": "White cotton clumps",
+                                    "encyclopedia_id": "mealybugs"
+                                },
+                                {
+                                    "answer": "Hard bumps",
+                                    "encyclopedia_id": "scale"
+                                },
+                                {
+                                    "answer": "Sticky residue",
+                                    "encyclopedia_id": "sap_pests"
+                                },
+                                {
+                                    "answer": "I don't know",
+                                    "id_of_next_question": 17
                                 }
                             ]
                         }

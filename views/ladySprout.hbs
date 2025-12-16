@@ -14,7 +14,9 @@
     <div>
       <h3>{{question.question}}</h3>
       {{#each question.answers}}
+      {{!-- change POST to GET --}}
         <form action="/ladySprout/{{this}}" method="POST">
+        {{!-- /encyclopedia/disease (encyclopedia_id) --}}
             <button type="submit">{{this}}</button>
         </form>
       {{/each}}
