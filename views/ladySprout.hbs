@@ -3,22 +3,21 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />  
-    <title>ladySprout</title>
+    <title>Lady Sprout</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
 
+
   </head>
   <body >
-    <h1>LadySprout page</h1>
+    <h1>Lady Sprout</h1>
 
     <div>
       <h3>{{question.question}}</h3>
       {{#each question.answers}}
-      {{!-- change POST to GET --}}
-        <form action="/ladySprout/{{this}}" method="POST">
-        {{!-- /encyclopedia/disease (encyclopedia_id) --}}
-            <button type="submit">{{this}}</button>
-        </form>
+        <a href="/ladySprout?question={{../question.question_id}}&answer={{this.answer}}">
+          <button>{{this.answer}}</button>
+        </a>
       {{/each}}
     </div>
 
