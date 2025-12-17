@@ -6,7 +6,19 @@
                             "plants": [
                                 {
                                     "plant_family": "Cactus",
-									"plant_url": "",
+									"plant_url": "assets/plants/cactus.svg",
+                                    "plant_id": 0,
+                                    "name": "",
+									"sensor_number": 1,
+									"water_level": 2,
+									"light_level": 4,
+									"temp_level": 3,
+									"level_scale": 5,
+									"pot": ""
+                                },{
+                                    "plant_family": "Monstera",
+									"plant_url": "assets/plants/monstera.svg",
+                                    "plant_id": 1,
                                     "name": "",
 									"sensor_number": 1,
 									"water_level": 2,
@@ -24,6 +36,8 @@
                             "plants": [
                                 {
                                     "plant": "Monstera",
+                                    "plant_url": "assets/plants/monstera.svg",
+                                    "plant_id": 2,
                                     "name": "",
 									"sensor_number": 2,
 									"health": "",
@@ -41,6 +55,8 @@
                             "plants": [
                                 {
                                     "plant": "Pepperomia",
+                                    "plant_url": "assets/plants/pepperomia.svg",
+                                    "plant_id": 3,
                                     "name": "",
 									"sensor_number": 3,
 									"health": "",
@@ -52,5 +68,23 @@
 								
                             ]
 						}
-					]
+					],
+    "plants_famillies": [
+        {
+            "plant_family": "Cactus",
+            "plant_url": "assets/plants/cactus.svg"
+        },{
+            "plant_family": "Monstera",
+            "plant_url": "assets/plants/monstera.svg"
+        },{
+            "plant_family": "Pepperomia",
+            "plant_url": "assets/plants/pepperomia.svg"
+        },{
+            "plant_family": "Succulent",
+            "plant_url": "assets/plants/succulent.svg"
+        },{
+            "plant_family": "Starlizia",
+            "plant_url": "assets/plants/starlizia.svg"
+        }
+    ]
 }

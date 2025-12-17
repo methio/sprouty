@@ -6,7 +6,7 @@ const fs = require('fs');
 // get all plants
 router.get('/', function(req, res, next) {
   // first we get the data
-  const plantData = fs.readFileSync('public/databases/plants.json', 'utf8');
+  const plantData = fs.readFileSync('public/databases/data-plants.json', 'utf8');
   const plants = JSON.parse(plantData);
   // return the data to the request
   console.log(`Plants: `, plants);

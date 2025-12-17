@@ -1,0 +1,23 @@
+.plants-container {
+    margin: 0;
+    padding: 0;
+}
+
+/* reset button styles */
+.plants-container button{
+    border: none;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    overflow: visible;
+    background: transparent;
+}
+
+
+.pop-up{
+    display: none;
+    position: absolute;
+    background-color: salmon;
+    width: calc(393px - 2em); /* size minus parent margins */
+    padding: .5em;
+}

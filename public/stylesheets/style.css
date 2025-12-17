@@ -3,6 +3,16 @@ body {
   margin: 0px;
   font-family: "Pixelify Sans", sans-serif;
   font-size: 16px;
+  background-color: aliceblue;
+}
+
+#container{
+  max-width: calc(393px - 1em); /* iPhone 14 Pro width */
+  min-height: 852px; /* iPhone 14 Pro height */;
+  margin: auto;
+  margin-top: 1em;
+  padding: 1em;
+  background-color: white;
 }
 
 a {
@@ -27,6 +37,9 @@ p {
 .column{
   flex-direction: column;
 }
+.row{
+  flex-direction: row;
+}
 .flex-end{
   justify-content: flex-end;
 }
@@ -36,6 +49,9 @@ p {
 
 .align-centered{
   align-items: center;
+}
+.align-baseline{
+  align-items: baseline;
 }
 
 .disabled{
