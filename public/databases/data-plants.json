@@ -1,75 +1,56 @@
 {
-    "plants": [
-        {
-            "family": "Monstera",
-            "name": "",
-            "sensor_number": "",
-            "health": "",
-            "water_level": "",
-            "light_level": "",
-            "temp_level": "",
-            "money": "",
-            "pot": "",
-            "background": "",
-            "shelf": ""
-
-        },
-        {
-            "family": "Sterlizia",
-            "name": "",
-            "sensor_number": "",
-            "health": "",
-            "water_level": "",
-            "light_level": "",
-            "temp_level": "",
-            "money": "",
-            "pot": "",
-            "background": "",
-            "shelf": ""
-
-        },
-        {
-            "family": "Cactus",
-            "name": "",
-            "sensor_number": "",
-            "health": "",
-            "water_level": "",
-            "light_level": "",
-            "temp_level": "",
-            "money": "",
-            "pot": "",
-            "background": "",
-            "shelf": ""
-
-        },
-        {
-            "family": "Peperomia",
-            "name": "",
-            "sensor_number": "",
-            "health": "",
-            "water_level": "",
-            "light_level": "",
-            "temp_level": "",
-            "money": "",
-            "pot": "",
-            "background": "",
-            "shelf": ""
-
-        },
-        {
-            "family": "Succulent",
-            "name": "",
-            "sensor_number": "",
-            "health": "",
-            "water_level": "",
-            "light_level": "",
-            "temp_level": "",
-            "money": "",
-            "pot": "",
-            "background": "",
-            "shelf": ""
-
-        }
-    ]
+    "shelves":    [
+                        {
+                            "shelf": "beedroom",
+                            "shelf_id": 0,
+                            "plants": [
+                                {
+                                    "plant_family": "Cactus",
+									"plant_url": "",
+                                    "name": "",
+									"sensor_number": 1,
+									"water_level": 2,
+									"light_level": 4,
+									"temp_level": 3,
+									"level_scale": 5,
+									"pot": ""
+                                }
+								
+                            ]
+						},
+						{
+                            "shelf": "living_room",
+                            "shelf_id": 1,
+                            "plants": [
+                                {
+                                    "plant": "Monstera",
+                                    "name": "",
+									"sensor_number": 2,
+									"health": "",
+									"water_level": "",
+									"light_level": "",
+									"temp_level": "",
+									"pot": ""
+                                }
+								
+                            ]
+						},
+						{
+                            "shelf": "kitchen",
+                            "shelf_id": 1,
+                            "plants": [
+                                {
+                                    "plant": "Pepperomia",
+                                    "name": "",
+									"sensor_number": 3,
+									"health": "",
+									"water_level": "",
+									"light_level": "",
+									"temp_level": "",
+									"pot": ""
+                                }
+								
+                            ]
+						}
+					]
 }
-    

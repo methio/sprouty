@@ -42,4 +42,10 @@ router.param('id', function(req, res, next, id) {
 });
 
 
+// update user money
+
+
+
+// store the values from the light/water/temp levels
+
 module.exports = router;
