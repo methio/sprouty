@@ -12,25 +12,25 @@
   <body>
     
     <h1>Shop</h1>
+    <p>your money: {{user.money}} sproots</p>
 
     <div id="shop-container" class="flex flex-wrap gap-1">
         {{#each shop}}
             <div class="shop-item">
                 <h3>{{this.name}}</h3>
-                <img src="{{this.path}}" alt="{{this.name}}" width="100" />
-                <p>Price: {{this.price}}sprouty</p>
-                <p>Stock: {{this.stock}}</p>                
-                {{#if this.stock}}
+                <img src="{{this.item_url}}" alt="{{this.item}}" width="100" />
+                <p>Price: {{this.price}} sproots</p>
+
+                {{#if (gte ../user.money this.price)}}          
                 <button popovertarget="my-popover-{{this.id}}">Buy</button>
                 <div popover id="my-popover-{{this.id}}">
-                    <p>Do you want to buy {{this.name}}?</p>
+                    <p>Do you want to buy {{this.item}}?</p>
                     <form action="/shop/{{this.id}}" method="POST">
                         <button type="submit">Yes, buy for {{this.price}} sprouty</button>
                     </form>
                 </div>
                 {{else}}
-                <button popovertarget="my-popover-{{this.id}}" class="disabled">Buy</button>
-                <p class="out-of-stock">out of stock</p>
+                <button disabled class="disabled">Buy</button>
                 {{/if}}
             </div>
         {{/each}}

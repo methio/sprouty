@@ -6,14 +6,13 @@ const fs = require('fs');
 // get all shop items
 router.get('/', function(req, res, next) {
   // first we get the data
-  const shopData = fs.readFileSync('public/databases/shop.json', 'utf8');
+  const shopData = fs.readFileSync('public/databases/data-shop.json', 'utf8');
   const shop = JSON.parse(shopData);
-  // return the data to the request
-  req.shop = shop;
-  next();
-}, (req, res) => {  
+
+  const userData = fs.readFileSync('public/databases/user.json', 'utf8');
+  const user = JSON.parse(userData); 
   // then we render the page
-  res.render('shop', { shop: req.shop });
+  res.render('shop', { shop: shop.shop, user: user });
 });
 
 
@@ -21,25 +20,32 @@ router.get('/', function(req, res, next) {
 router.post('/:id', function(req, res) {
     console.log("ici", parseInt(req.params.id));
 
-    // update user data    
+    const shopData = fs.readFileSync('public/databases/data-shop.json', 'utf8');
+    const shop = JSON.parse(shopData);
+
     const userData = fs.readFileSync('public/databases/user.json', 'utf8');
-    const user = JSON.parse(userData);
-    console.log("user before", user);
+    const user = JSON.parse(userData); 
 
+    const itemIndex = shop.shop.findIndex(item => item.id === parseInt(req.params.id));
+    const itemBought = shop.shop[itemIndex];
 
-    const shopData = fs.readFileSync('public/databases/shop.json', 'utf8');
-    let shop = JSON.parse(shopData);
-
-    const itemBought = shop[parseInt(req.params.id)];
-    user.money -= parseInt(itemBought.price);
+    if (user.money<itemBought.price){
+      return res.redirect('/shop');
+    }
+    
+    user.money -= itemBought.price;
     user.inventory.push(itemBought);
     console.log("newUser", user);
-    // save updated user data
-    fs.writeFileSync('public/databases/user.json', JSON.stringify(user), 'utf8');
 
-    // update shop data
-    shop[parseInt(req.params.id)].stock -= 1;
-    fs.writeFileSync('public/databases/shop.json', JSON.stringify(shop), 'utf8');
+    shop.shop.splice(itemIndex, 1);
+
+    // save updated user and shop data
+    fs.writeFileSync('public/databases/user.json', JSON.stringify(user), 'utf8');
+    fs.writeFileSync('public/databases/data-shop.json', JSON.stringify(shop), 'utf8');
+
+    // // update shop data
+    // shop[parseInt(req.params.id)].stock -= 1;
+    // fs.writeFileSync('public/databases/shop.json', JSON.stringify(shop), 'utf8');
     
     // then we render the page
     res.redirect('/shop');

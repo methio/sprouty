@@ -1,11 +1,10 @@
 {
-    "title": "Encyclopedia Database",
+    "title": "Plantopedia Database",
     "description": "A comprehensive database of plant species with detailed information on their characteristics, habitats, and care instructions.",
-    "version": "1.0.0",
     "diseases": [
         {
             "disease": "Powdery Mildew",
-            "anchor": "powdery-mildew",
+            "encyclopedia_id": "powdery-mildew",
             "description": "A fungal disease that appears as white powdery spots on leaves and stems.",
             "symptoms": [
                 "White powdery spots on leaves",
@@ -16,7 +15,7 @@
         },
         {
             "disease": "Root Rot",
-            "anchor": "root-rot",
+            "encyclopedia_id": "root-rot",
             "description": "A condition caused by overwatering leading to fungal growth in the roots.",
             "symptoms": [
                 "Wilting despite adequate watering",
@@ -27,7 +26,7 @@
         },
         {
             "disease": "Leaf Spot",
-            "anchor": "leaf-spot",
+            "encyclopedia_id": "leaf-spot",
             "description": "Fungal or bacterial infection causing spots on leaves.",
             "symptoms": [
                 "Brown or black spots on leaves",
@@ -38,7 +37,7 @@
         },
         {
             "disease": "Aphid Infestation",
-            "anchor": "aphid-infestation",
+            "encyclopedia_id": "aphid-infestation",
             "description": "A common pest problem where small insects feed on plant sap.",
             "symptoms": [
                 "Sticky residue on leaves",
@@ -49,7 +48,7 @@
         },
         {
             "disease": "Spider Mites",
-            "anchor": "spider-mites",
+            "encyclopedia_id": "spider-mites",
             "description": "Tiny arachnids that feed on plant sap, causing damage to leaves.",
             "symptoms": [
                 "Fine webbing on leaves",
@@ -60,7 +59,7 @@
         },
         {
             "disease": "Blight",
-            "anchor": "blight",
+            "encyclopedia_id": "blight",
             "description": "A rapid and complete chlorosis, browning, then death of plant tissues.",
             "symptoms": [
                 "Sudden wilting of leaves and stems",
@@ -71,7 +70,7 @@
         },
         {
             "disease": "Rust",
-            "anchor": "rust",
+            "encyclopedia_id": "rust",
             "description": "A fungal disease that causes rust-colored pustules on leaves and stems.",
             "symptoms": [
                 "Orange or rust-colored spots on leaves",
