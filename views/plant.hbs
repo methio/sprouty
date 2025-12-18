@@ -44,6 +44,7 @@
         <div class="plant-image" style="position: relative;">
           <img src="/{{plant.plant_url}}" alt="{{plant.plant_family}}" width="150"/>
           <div class="low-water-popup" id="low-water-popup" style="display:none;"></div>
+          <div class="thank-you-popup" id="thank-you-popup" style="display:none;"></div>
         </div>
 
         <h1>{{#if plant.name}}{{plant.name}}{{else}}{{plant.plant_family}}{{/if}}</h1>
@@ -64,7 +65,7 @@
         </div>
 
         <div class="plant-actions flex row gap-1">
-          <button class="action-btn" id="water-btn">💧 Water Plant - click for more</button>
+          <button class="action-btn" id="water-btn">Water Plant <br>click for more</button>
         </div>
       </div>
 
@@ -84,16 +85,31 @@
         temp: 'temperature'
       };
 
-      const lowWaterPopup = document.getElementById('low-water-popup');
-      const waterBtn = document.getElementById('water-btn');
       const STATUS_ICON_BASE = '/assets/status%20bar';
 
+
+      //water me popup
+      const lowWaterPopup = document.getElementById('low-water-popup');
+      const waterBtn = document.getElementById('water-btn');
+      
       const lowWaterPopupData = `
         <h3>Water me!</h3>
         <p>Take the watering cup and pour water into the pot.</p>
         <p>(The alert will disappear after you water the plant)</p>
         <button id="close-low-water-popup">Got it</button>
       `;
+
+
+      //reward popup
+      const thankYouPopup = document.getElementById('thank-you-popup');
+      const thankYouPopupData = `
+        <h3>Thank you for watering me!</h3>
+        <p>
+          +10 <img src="/assets/menu/leaf_currency.svg" alt="+10" width="20">
+        </p>
+        <button id="close-thank-you-popup">Got it</button>
+      `;
+
 
       function clampLevel(value, scale = 5) {
         const n = Number(value);
@@ -148,14 +164,48 @@
         setBarImg('light-bar-img', `${STATUS_ICON_BASE}/light_${lightLevel}.svg`);
         setBarImg('temp-bar-img',  `${STATUS_ICON_BASE}/temp_${tempLevel}.svg`);
 
+
+        //water me + reward popups
         if (lowWaterPopup) {
           if (waterLevel <= 3) {
             lowWaterPopup.innerHTML = lowWaterPopupData;
             lowWaterPopup.style.display = 'block';
             waterBtn.style.display = 'inline-block';
+            if (waterLevel <=3 && plantData.reward_given === true){
+              plantData.reward_given = false;
+            }
+            
           } else {
             lowWaterPopup.style.display = 'none';
             waterBtn.style.display = 'none';
+            
+            if (
+              waterLevel > 3 &&
+              plantData.reward_given === false
+            ) {
+              thankYouPopup.innerHTML = thankYouPopupData;
+              thankYouPopup.style.display = 'block';
+
+              reward();
+
+              plantData.reward_given = true;
+
+              fetch(`/plants/${plantData.plant_id}/update-levels`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  water_level: waterLevel,
+                  light_level: plantData.light_level,
+                  temp_level: plantData.temp_level,
+                  reward_given: true
+                })
+              });
+            
+
+              setTimeout(() => {
+                thankYouPopup.style.display = 'none';
+              }, 15000);
+            }
           }
         }
 
@@ -172,11 +222,22 @@
         };
       }
 
+      if (thankYouPopup){
+        thankYouPopup.onclick = (event) => {
+          if (event.target.id === 'close-thank-you-popup'){
+            thankYouPopup.style.display = 'none';
+          }
+        };
+      }
+
       if (waterBtn) {
         waterBtn.addEventListener('click', () => {
           if (plantData.water_level <= 3) lowWaterPopup.style.display = 'block';
         });
       }
+
+
+
 
       async function updatePlantInDatabase(waterLevel, lightLevel, tempLevel) {
         try {
@@ -232,6 +293,33 @@
       } else {
         console.log('[Sensors] Live updates DISABLED for this plant:', plantData.name);
       }
+
+
+      async function reward() {
+        try {
+          const response = await fetch('/plants/user/reward-watering', {
+            method: 'POST'
+          });
+
+          if (!response.ok) {
+            console.error('Reward failed');
+            return;
+          }
+
+          const data = await response.json();
+
+          // update coins UI
+          const coinsEl = document.querySelector('.coins');
+          if (coinsEl) {
+            coinsEl.textContent = `sproot: ${data.money}`;
+          }
+        } catch (error) {
+          console.error('Error rewarding user:', error);
+        }
+      }
+
+
+
     </script>
   </body>
 </html>

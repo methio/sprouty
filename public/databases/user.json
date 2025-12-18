@@ -1,1 +1,10 @@
-{"name":"John Doe","age":30,"inventory":[null,null,null],"money":100}
+{
+  "name": "John Doe",
+  "age": 30,
+  "inventory": [
+    null,
+    null,
+    null
+  ],
+  "money": 220
+}
