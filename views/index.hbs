@@ -6,25 +6,43 @@
     <title>My Awesome App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
-    {{!-- <link rel="stylesheet" type="text/css" href="stylesheets/home.css" /> --}}
+    <link rel="stylesheet" type="text/css" href="stylesheets/home.css" />
+    {{> ressources}}
 
   </head>
-  <body class="flex column space-between">
-    <h1>Welcome on Sprouty 🌱</h1>
+  <body>
+    <div id="container" class="home-screen">
 
-    <div class="flex column flex-end align-centered" id="cta-container">
-      <a href="/plants">
-        <img src="/assets/buttons/start_button.svg" alt="start button" width="200">
-      </a>
-
-      <button popovertarget="my-popover">
-        <img src="/assets/buttons/about_button.svg" alt="info" width="200">
-      </button>
-      <div popover id="my-popover">
-        <h3>How it works?</h3>
-        <p>Sprouty pairs with your real plants to help you care for them. It keeps an eye on water, light and temperature. It sends alerts when something needs adjusting.</p>
-        <p id="close-popover">Got it!</p>
+      <!-- Title (SVG) -->
+      <div class="home-title">
+        <img src="/assets/menu/sprouTy_logo.svg" alt="Sprouty" />
       </div>
+
+      <!-- Character / illustration (SVG) -->
+      <div class="home-hero">
+        <img src="/assets/lady_sprout/lady_sprouts_with_plants.svg" alt="" />
+      </div>
+
+       <div class="home-cta" id="cta-container">
+        <a class="home-btn" href="/plants" aria-label="Start">
+          <img src="/assets/buttons/start_button.svg" alt="Start" class="home-btn-bg" />
+        </a>
+
+        <button class="home-btn" id="aboutBtn" type="button" popovertarget="my-popover" aria-label="About">
+          <img src="/assets/buttons/about_button.svg"  alt="About" class="home-btn-bg" />
+        </button>
+
+        
+        <div popover id="my-popover" class="home-popover">
+          <h3>How it works?</h3>
+          <p>
+            Sprouty pairs with your real plants to help you care for them. It keeps an eye on water,
+            light and temperature. It sends alerts when something needs adjusting.
+          </p>
+          <button type="button" id="close-popover" class="popover-close">Got it!</button>
+        </div>
+      </div>
+
     </div>
 
     <script>
