@@ -23,7 +23,7 @@
           "name": "Stuart",
           "sensor_number": 1,
           "water_level": 2,
-          "light_level": 4,
+          "light_level": 2,
           "temp_level": 3,
           "level_scale": 5,
           "pot": ""
