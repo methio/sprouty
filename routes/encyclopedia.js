@@ -2,34 +2,36 @@ var express = require('express');
 var router = express.Router();
 const fs = require('fs');
 
-
-// get encyclopedia
-router.get('/', function(req, res, next) {
-  // first we get the data
-  const encyclopediaData = fs.readFileSync('public/databases/encyclopedia.json', 'utf8');
+// spis treści
+router.get('/', function(req, res) {
+  const encyclopediaData = fs.readFileSync('public/databases/data-plantopedia.json','utf8');
   const encyclopedia = JSON.parse(encyclopediaData);
-  // return the data to the request
-  req.encyclopedia = encyclopedia;
-  next();
-}, (req, res) => {  
-  // then we render the page
-  res.render('encyclopedia', { encyclopedia: req.encyclopedia });
+
+  return res.render('encyclopedia', { encyclopedia: encyclopedia });
 });
 
-// get encyclopedia with anchor
-router.get('/:name', function(req, res, next) {
-  // first we get the data
-  const encyclopediaData = fs.readFileSync('public/databases/encyclopedia.json', 'utf8');
+// kwiatek
+router.get('/plants/:plant', function(req, res) {
+  const encyclopediaData = fs.readFileSync('public/databases/data-plantopedia.json','utf8');
   const encyclopedia = JSON.parse(encyclopediaData);
-  // return the data to the request
-  req.encyclopedia = encyclopedia;
-//   req.anchor = encyclopedia.diseases[req.params.id].anchor;
-//   console.log("anchor", req.anchor);
-  next();
-}, (req, res) => {  
-  // then we render the page
-  res.render(`encyclopedia`, { encyclopedia: req.encyclopedia, anchor: req.params.name });
-    // res.redirect(`/encyclopedia#${req.anchor}`);
+
+  const plant = encyclopedia.plants.find(
+    p => p.plant === req.params.plant
+  );
+
+  return res.render('encyclopedia', { plant: plant });
+});
+
+// choroba
+router.get('/diseases/:disease', function(req, res) {
+  const encyclopediaData = fs.readFileSync('public/databases/data-plantopedia.json','utf8');
+  const encyclopedia = JSON.parse(encyclopediaData);
+
+  const disease = encyclopedia.diseases.find(
+    d => d.encyclopedia_id === req.params.disease
+  );
+
+  return res.render('encyclopedia', { disease: disease });
 });
 
 module.exports = router;

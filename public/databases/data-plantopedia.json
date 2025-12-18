@@ -1,27 +1,332 @@
 {
-    "title": "Encyclopedia Database",
+    "title": "Plantopedia Database",
     "description": "A comprehensive database of plant species with detailed information on their characteristics, habitats, and care instructions.",
-    "version": "1.0.0",
     "diseases": [
         {
-            "disease": "Powdery Mildew",
-            "description": "A fungal disease that appears as white powdery spots on leaves and stems.",
+            "disease": "Stem rot",
+            "encyclopedia_id": "internal_rot",
+            "description": "Stem rot is defined as a disease of groundnuts caused by the fungus Sclerotium rolfsii, characterized by its prevalence in sandy soils and association with prolonged wet conditions, often exacerbated by practices such as mulching and mechanical earthing of plants.",
             "symptoms": [
-                "White powdery spots on leaves",
-                "Distorted leaf growth",
-                "Premature leaf drop"
+                "Spots on stems and roots",
+                "Wilting",
+                "Dieback"
             ],
-            "treatment": "Remove affected leaves, improve air circulation, and apply fungicides if necessary."
+            "treatment": "For preventing this disease avoid overwatering the plants, heavy mulching with decomposed organic matter and buildup around stems. Add fungicide to the plant by previously mixing it with soil or as instructed by the manufacturer. Let overly wet soils dry."
         },
         {
             "disease": "Root Rot",
-            "description": "A condition caused by overwatering leading to fungal growth in the roots.",
+            "encyclopedia_id": "root_rot",
+            "description": "There are mainly two causes for root rot, the main one being poorly drained or overwatered soils. Another cause of root rot is soil fungus, which is more likely to target weakened roots.",
             "symptoms": [
                 "Wilting despite adequate watering",
-                "Yellowing leaves",
-                "Mushy or blackened roots"
+                "Branch dieback",
+                "Poor growth."
             ],
-            "treatment": "Reduce watering, improve soil drainage, and repot the plant in fresh soil if needed."
+            "treatment": "The best method to contrast root rot is prevention. So it is important to choose well drained soil, and avoid overwatering plants. Chemicals can be used to minimize the infection, but will not completely cure the plant. Some plants can be saved early by pruning the infected roots, and using disinfected tools. In case there are more plants close to each other it would be more useful to remove the plant completely, so as to avoid it from infecting the plants close to it. "
+        },
+        {
+            "disease": "Fungal rot",
+            "encyclopedia_id": "fungal_rot",
+            "description": "The presence of fungal infections can be caused by moist environments, with high humidity, poor air circulation and waterlogged soils. Mechanical injuries caused by insect feeding or pruning wounds can also increase chances of fungal infections as they provide entry points for the fungi.",
+            "symptoms": [
+                "Decay and rot",
+                "Softening",
+                "Discoloration",
+                "Wilting",
+                "Structural collapse"
+            ],
+            "treatment": "To prevent fungal infections and rots you should avoid overwatering the plants, and improve soil drainage as well as air circulation. Depending on the type of fungi a fungicide might be needed, as its use is not beneficiary in every case. Therefore in order to treat this type of disease it is important to get a diagnosis and recommendation from an expert."
+        },
+        {
+            "disease": "Underwatering",
+            "encyclopedia_id": "underwatering",
+            "description": "There are many factors that can cause this issue, the most common being infrequent watering, and others being intense sunlight, high temperatures, wrong type of soil (too draining), and low humidity.",
+            "symptoms": [
+                "Dry soil",
+                "Water repelling soil",
+                "Wilting",
+                "Floopy plant",
+                "Wrinkled leaves",
+                "Yellow or crispy brown leaves",
+                "Dried out roots"
+            ],
+            "treatment": "Prune or trim the discoloured and unhealthy leaves to redirect energy to the healthy parts of the plant. Rehydrate the soil by soaking the bottom half of the pot in water for 10-30 minutes until the soil surface feels moist or add a wetting agent to the water so as to rehydrate the soil quickly. Let excess water drip from the pot drainage holes. Avoid overwatering the plant to overcompensate its need for water."
+        },
+        {
+            "disease": "Root damage",
+            "encyclopedia_id": "root_damage",
+            "description": "Root damage can be caused by mechanical injuries from tools, accidental cutting during transplanting or gardening.",
+            "symptoms": [
+                "Wilting",
+                "Stuned growth",
+                "Discoloration",
+                "Decay",
+                "Mushy roots"
+            ],
+            "treatment": "To solve this problem you should trim damaged roots using sterilized tools, apply then diluted hydrogen peroxide to prevent infection. It is important to keep the roots moist and to avoid direct sunlight during the treatment, to do so you can wrap them in a damp paper towel."
+        },
+        {
+            "disease": "Sunburn",
+            "encyclopedia_id": "sunburn",
+            "description": "Can be caused by sudden exposure to intense or direct sunlight, high temperatures, insufficient water in hot weather conditions, and in some cases, pruning which exposes shaded parts of the plant.",
+            "symptoms": [
+                "Yellow, bleached or brown spots on the leaves",
+                "Dry or scorched tissue that may turn dark",
+                "Leaf curling and wilting",
+                "Sunburnt fruits",
+                "Weakened plant growth"
+            ],
+            "treatment": "To solve this issue you can move plants gradually from shade to sunlight, use a shade cloth to provide temporary shade, During warmer seasons maintain a consistent watering, or increase it, and avoid heavy pruning. "
+        },
+        {
+            "disease": "Fungal infection",
+            "encyclopedia_id": "fungal_infection",
+            "description": "Fungal infection can be caused by the presence of fungal spores in the plant environment, high humidity, poor air circulation, poorly drained soil, plant stress from nutrient imbalance, drought or physical injury, as well as warm temperatures.",
+            "symptoms": [
+                "Spots on the leaves",
+                "Powdery mildew",
+                "Rust",
+                "Blight",
+                "Wilting",
+                "Rot"
+            ],
+            "treatment": "To alleviate this type of infections you should improve air circulation by proper space and pruning, use well draining soil, and avoid overwatering the plant. Depending on the fungal infection it might be useful to apply fungicides, under recommendation of an expert, as it not always improves the condition of the plant. "
+        },
+        {
+            "disease": "Edema/Scarring",
+            "encyclopedia_id": "edema",
+            "description": "Edema is usually caused by an imbalance between water uptake by the roots and water loss through the leaves. This often happens when plants are watered too frequently while light levels are low or air circulation is poor.",
+            "symptoms": [
+                "Small blister-like bumps or corky",
+                "Rough scars on the leaves"
+            ],
+            "treatment": "Reduce watering frequency and allow the soil to dry slightly between waterings. Improve light exposure and airflow to help the plant regulate transpiration. Damaged leaves will not recover, but new growth should appear healthy once conditions improve."
+        },
+        {
+            "disease": "Mealybug",
+            "encyclopedia_id": "mealybugs",
+            "description": "Mealybugs thrive in warm, dry environments and often appear when plants are stressed or weakened. They are commonly introduced by newly purchased plants that were not quarantined.",
+            "symptoms": [
+                "White, cotton-like clusters on leaf joints, stems, and undersides of leaves",
+                "Yellow leaves",
+                "Stuned growth",
+                "Sticky residue (honeydew)"
+            ],
+            "treatment": "Isolate the affected plant immediately. Remove visible insects using a cotton swab dipped in rubbing alcohol. Treat the plant regularly with insecticidal soap or neem oil until the infestation is fully controlled."
+        },
+        {
+            "disease": "Spider mites",
+            "encyclopedia_id": "spider_mites",
+            "description": "Spider mites are most common in hot, dry conditions with low humidity. Indoor heating and poor air circulation greatly increase the risk of infestation.",
+            "symptoms": [
+                "Tiny yellow or pale spots on leaves",
+                "Dull looking or dusty leaves",
+                "Fine web under the leaves",
+                "Leaf drop or overall decline"
+            ],
+            "treatment": "Increase humidity around the plant by misting or using a humidifier. Rinse leaves regularly to remove mites. If necessary, apply insecticidal soap or a miticide and repeat treatment weekly."
+        },
+        {
+            "disease": "Scale",
+            "encyclopedia_id": "scale",
+            "description": "Scale insects appear when plants are stressed or grown in low-light, poorly ventilated environments. They often spread unnoticed from nearby plants.",
+            "symptoms": [
+                "Small brown, tan, or black shell-like bumps form along stems and leaves",
+                "Yellowing",
+                "Slow growth",
+                "Sticky residue that may lead to sooty mold"
+            ],
+            "treatment": "Manually remove scale insects using a soft cloth or brush. Dab remaining insects with alcohol and follow up with insecticidal soap. Improve light and airflow to prevent recurrence."
+        },
+        {
+            "disease": "Sap pests",
+            "encyclopedia_id": "sap_pests",
+            "description": "Sap-sucking pests such as aphids, whiteflies, and thrips usually appear when plants are weak, overcrowded, or exposed to infected plants.",
+            "symptoms": [
+                "Yellow leaves",
+                "Curled or distorted leaves",
+                "Sticky residue",
+                "Slow growth"
+            ],
+            "treatment": "Inspect plants regularly, especially new growth. Isolate infected plants and treat with insecticidal soap or neem oil. Maintaining overall plant health helps prevent future infestations."
+        },
+        {
+            "disease": "Overwatering",
+            "encyclopedia_id": "overwatering",
+            "description": "Overwatering is caused by watering too frequently, poor drainage, or using soil that retains too much moisture. Pots without drainage holes increase the risk significantly.",
+            "symptoms": [
+                "Yellow leaves",
+                "Soft or limp leaves",
+                "Foul-smelling soil"
+            ],
+            "treatment": "Allow the soil to dry according to the plant’s needs before watering again. Use well-draining soil and pots with drainage holes. In severe cases, repot the plant after removing rotten roots."
+        },
+        {
+            "disease": "Low resilience",
+            "encyclopedia_id": "lowered_resilience",
+            "description": "Low resilience develops when a plant is exposed to long-term stress such as improper light, inconsistent watering, or poor nutrition.",
+            "symptoms": [
+                "Slow growth",
+                "Leaves may appear thin or weak"
+            ],
+            "treatment": "Stabilize care conditions by correcting light, watering, and temperature. Feed with a balanced fertilizer during the growing season to rebuild strength."
+        },
+        {
+            "disease": "Transplant shock",
+            "encyclopedia_id": "transplant_shock",
+            "description": "Transplant shock occurs after repotting when roots are disturbed or when the plant is suddenly exposed to a new environment.",
+            "symptoms": [
+                "Yellow leaves",
+                "Droopy or falling leaves",
+                "Slow growth"
+            ],
+            "treatment": "After repotting, place the plant in bright indirect light and avoid overwatering. Do not fertilize immediately. Most plants recover within a few weeks."
+        },
+        {
+            "disease": "Natural leaf aging",
+            "encyclopedia_id": "natural_leave_aging",
+            "description": "Leaf aging is a natural part of a plant’s life cycle, especially for older, lower leaves.",
+            "symptoms": [
+                "Yellow leaves",
+                "Dry or falling leaves"
+            ],
+            "treatment": "Remove aging leaves to maintain appearance. No corrective action is needed as long as new growth is healthy."
+        },
+        {
+            "disease": "Nutrient deficiency",
+            "encyclopedia_id": "nutrient_deficiency",
+            "description": "Nutrient deficiencies develop when plants are grown in depleted soil or are not fertilized for long periods.",
+            "symptoms": [
+                "Yellow or paleleaves",
+                "Weak growth of the leaves",
+                "Small or deformed new leaves"
+            ],
+            "treatment": "Apply a balanced houseplant fertilizer according to label instructions. Avoid over-fertilizing, which can cause further stress."
+        },
+        {
+            "disease": "Low humidity",
+            "encyclopedia_id": "low_humidity",
+            "description": "Low humidity is usually caused by indoor heating, air conditioning, or naturally dry climates. During winter, indoor air humidity can drop significantly, creating an unsuitable environment for many tropical houseplants.",
+            "symptoms": [
+                "Brown and crispy leaf tips or edges",
+                "Curled leaves"
+            ],
+            "treatment": "Increase humidity around the plant by using a humidifier, placing the pot on a pebble tray with water, or grouping plants together. Light misting can help temporarily, but consistent humidity improvement is more effective."
+        },
+        {
+            "disease": "Overheating",
+            "encyclopedia_id": "overheating",
+            "description": "Overheating is caused by prolonged exposure to strong direct sunlight, high ambient temperatures, or placement near heat sources such as radiators and heaters.",
+            "symptoms": [
+                "Scorched or bleached patches on leaves",
+                "Dry leaves",
+                "Wilting",
+                "Leaf drop",
+                "Growth stagnation"
+            ],
+            "treatment": "Move the plant to a location with bright but indirect light. Keep it away from heat sources and ensure adequate air circulation, especially during warm seasons."
+        },
+        {
+            "disease": "Environmental shock",
+            "encyclopedia_id": "rust",
+            "description": "Environmental shock happens when a plant experiences sudden changes in light, temperature, humidity, or location. This often occurs after moving, repotting, or seasonal transitions.",
+            "symptoms": [
+                "Leaf drop",
+                "Wilting",
+                "Growth stagnation"
+            ],
+            "treatment": "Allow plants to acclimate gradually to new conditions. Avoid moving them frequently and maintain stable light, temperature, and watering routines."
+        },
+        {
+            "disease": "Powdery mildew",
+            "encyclopedia_id": "powdery_mildew",
+            "description": "Powdery mildew develops in environments with high humidity combined with poor air circulation. It is more common when leaves remain damp for long periods.",
+            "symptoms": [
+                "White or grey powdery coating on the leaf surface",
+                "Weak or distorted leaves",
+                "Yellow leaves"
+            ],
+            "treatment": "Improve air circulation and avoid wetting the leaves when watering. Remove affected foliage and treat the plant with a suitable fungicide if the infection spreads."
+        },
+        {
+            "disease": "Bacterial infection",
+            "encyclopedia_id": "bacterial_infection",
+            "description": "Bacterial infections occur when bacteria enter the plant through wounds or damaged tissue, often encouraged by excess moisture and poor hygiene.",
+            "symptoms": [
+                "Infected areas become soft",
+                "Unpleasant odor",
+                "Plant decline"
+            ],
+            "treatment": "Immediately remove infected plant parts using sterilized tools. Reduce watering, improve airflow, and avoid splashing water on leaves."
+        },
+        {
+            "disease": "Bacterial leaf spot",
+            "encyclopedia_id": "bacterial_leaf_spot",
+            "description": "Bacterial leaf spot is caused by bacteria that thrive in warm, humid conditions, especially when leaves remain wet.",
+            "symptoms": [
+                "Water-soaked spots on leaves",
+                "Darker spots",
+                "Leaf drop"
+            ],
+            "treatment": "Water plants at the soil level rather than overhead. Remove affected leaves and improve ventilation. Isolate infected plants to prevent spread."
+        }
+    ],
+    "plants": [
+        {
+            "plant": "Monstera",
+            "family_id": 0,
+            "description":"As one of the most popular types of houseplants, monstera has big glossy heart shaped leaves, which when maturing can develop holes and fenestrations. Its popularity is not only due to its looks but also to its low maintenance.",
+            "light":"Prefers bright light, preferably indirect sunlight. Be careful, too much direct light can burn the foliage!",
+            "water":"This plants like relatively moist soil. Water the plant when the upper third (25-30%) of the soil in the pot is dry to the touch. Be careful, too much water can drown the and kill the roots!",
+            "Temperature":"Monstera grows best in warmer temperatures (between 18° - 30°).",
+            "Humidity":"They prefer humid environments. The thinner the leaves are the most likely the plant is to suffer in dry air.",
+            "Soil":"Needs to have porus and well-draining soil.",
+            "Pro tip":"Mix of bark and peat moss"
+        },
+        {
+            "plant": "Strelitzia",
+            "family_id": 1,
+            "description":"Member of the Musaceae family, this plant originated in South Africa, and has been in Europe since the 18th century. Strelitzias are recognizable by their sturdy and elongated leaves, which usually have a grey waxy coating. The flowers of this plant have bright colours like orange and purple.",
+            "light":"The plant prefers bright sunlight, including direct sunlight. Warm seasons:  place the plant in a spot which gets sunlight either in the afternoon or the evening. Cold seasons: 4-6 hours of direct sunlight or 12 hours of indirect sunlight daily. Be careful, direct light in the summer afternoon’s can burn the leaves!",
+            "water":"This plant likes moist soil, so it should be watered frequently. Warm seasons: water twice per week. Cold seasons: water once per week. Be careful, too much water can make the roots rot!",
+            "Temperature":"This plant grows best in warmer temperatures Daytime: 18°-24°. Night time: between 10°-13°. Be careful, position the plant away from heat sources and cold drafts to not kill it!",
+            "Humidity":"They prefer humid environments (ideally the range should be between 60% - 70%)). To increase the humidity in the house consider using an humidifier or to spray the leaves with water.",
+            "Soil":"Needs to have a well-draining soil, which can both retain moisture and let the water escape from the pot. ",
+            "Pro tip":"Soil should contain a mix of potting soil, peat moss and perlite"
+        },
+        {
+            "plant": "Pepperomia",
+            "family_id": 2,
+            "description":"Pepperomia plants come from the subtropical regions of Central and South America with usually thick, waxy and succulent-like leaves. These plants are known for improving air quality by filtering out airborne toxins.",
+            "light":"Prefers bright light, preferably indirect sunlight. Be careful, direct light can burn the foliage!",
+            "water":"These plants do not need frequent watering. Water the plant when the upper third (25-30%) of the soil in the pot is dry to the touch or every 7-10 days. Be careful, too much water can lead to root rot!",
+            "Temperature":"Pepperomia plants grow best in warmer temperatures (between 18° - 26°). ",
+            "Humidity":"They prefer humid environments. To increase the humidity in dry parts of the house spray the leaves with water.",
+            "Soil":"Needs be well-draining and aerated.",
+            "Pro tip":"Mix of soil containing coco fiber and perlite."
+        },
+        {
+            "plant": "Cactus",
+            "family_id": 3,
+            "description":"These plants belonging to the Cactaceae family come from the arid regions of the Americas. They are mostly known for their ability of storing water for long periods of time and low-maintenace.",
+            "light":"Prefers bright light, preferably 6-8 hours of bright direct sunlight daily. Be careful, too much hot light in hot climate can burn the plant!",
+            "water":"Cacti need to be watered once every two or three weeks. Be careful, too much water can kill the plant!",
+            "Temperature":"Grow best in temperatures: daytime: 21° - 32°, night time: 10° - 15° ",
+            "Humidity":"They live low humidity environments (10%-40%)",
+            "Soil":"Needs to be similar to the one in the desert, so sandy, gritty and well-draining.",
+            "Pro tip":"Mix of potting soil, perlite, and gravel"
+        },
+        {
+            "plant": "Succulent",
+            "family_id": 4,
+            "description":"Succulents are one of the most popular types of houseplants, thanks to their thick and fleshy leaves. Coming from hot and arid climates they can easily adapt to most environments.",
+            "light":"Prefers bright light, preferably over 6 hours of light daily.",
+            "water":"This plants do not need to be watered frequently. Just water them when the soil is completely dry. When in doubt, it is better to underwater the plant than to overwater it, as the plants have better  chances of survival.",
+            "Temperature":"These plants thrive in environments with temperatures between 5° and 26°.",
+            "Humidity":"They prefer environments with humidity between 40% and 60%.",
+            "Soil":"Needs to have porus and well-draining soil, with loose and grainy texture.",
+            "Pro tip":"none try harder"
         }
     ]
 }
+

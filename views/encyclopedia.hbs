@@ -3,32 +3,76 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />  
-    <title>👴🏻 Encyclopedia</title>
+    <title>Plantopedia</title>
     {{> ressources}}
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
   </head>
-  <body>
-    <script>
-        if(`{{ anchor }}`) {
-            window.onload = window.location.hash = '#{{ anchor }}';
-        }
-    </script>
+<body>
 
-    <h1>Encyclopedia</h1>
-   
+<h1>Plantopedia</h1>
 
-    {{#each encyclopedia.diseases}}
-      <div>
-        <h3 id="{{this.anchor}}">{{this.disease}}</h3>
-        <p>{{this.description}}</p>
-        {{#each this.symptoms}}
-          <li>{{this}}</li>
-        {{/each}}
-      </div>
+{{#if plant}}
+
+  <a href="/encyclopedia">back</a>
+
+  <h2>{{plant.plant}}</h2>
+  <p>{{plant.description}}</p>
+
+  <ul>
+    <li><strong>Light:</strong> {{plant.light}}</li>
+    <li><strong>Water:</strong> {{plant.water}}</li>
+    <li><strong>Temperature:</strong> {{plant.Temperature}}</li>
+    <li><strong>Humidity:</strong> {{plant.Humidity}}</li>
+    <li><strong>Soil:</strong> {{plant.Soil}}</li>
+    <li><strong>Pro tip:</strong> {{plant.[Pro tip]}}</li>
+  </ul>
+
+{{else if disease}}
+
+  <a href="/encyclopedia">← back</a>
+
+  <h2>{{disease.disease}}</h2>
+  <p>{{disease.description}}</p>
+
+  <h3>Symptoms</h3>
+  <ul>
+    {{#each disease.symptoms}}
+      <li>{{this}}</li>
     {{/each}}
-    
-    {{> menu}}
-  </body>
+  </ul>
+
+  <h3>Treatment</h3>
+  <p>{{disease.treatment}}</p>
+
+{{else}}
+
+  <h2>Plants</h2>
+  <ul>
+    {{#each encyclopedia.plants}}
+      <li>
+        <a href="/encyclopedia/plants/{{this.plant}}">
+          {{this.plant}}
+        </a>
+      </li>
+    {{/each}}
+  </ul>
+
+  <h2>Diseases</h2>
+  <ul>
+    {{#each encyclopedia.diseases}}
+      <li>
+        <a href="/encyclopedia/diseases/{{this.encyclopedia_id}}">
+          {{this.disease}}
+        </a>
+      </li>
+    {{/each}}
+  </ul>
+
+{{/if}}
+
+{{> menu}}
+
+</body>
 </html>
