@@ -4,40 +4,100 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />  
     <title>Shop</title>
+     {{> ressources}}
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
     <link rel="stylesheet" type="text/css" href="stylesheets/shop.css" />
-
   </head>
   <body>
-    
-    <h1>Shop</h1>
-    <p>your money: {{user.money}} sproots</p>
+    <div id="container">
+      <!-- Money display at top -->
+      <div class="user-money">
+        <img src="/assets/menu/leaf_currency.svg" alt="currency" class="currency-icon" />
+        {{user.money}} sproots
+      </div>
 
-    <div id="shop-container" class="flex flex-wrap gap-1">
+      <!-- Centered Shop Button -->
+      <div class="shop-button-container">
+        <div class="shop-button">
+          <img src="/assets/buttons/plain_button_big.svg" alt="shop button" class="button-bg" />
+          <span class="button-text">SHOP</span>
+        </div>
+      </div>
+
+      <!-- Shop shelves with items -->
+      <div class="shop-shelves-container">
         {{#each shop}}
-            <div class="shop-item">
-                <h3>{{this.name}}</h3>
-                <img src="{{this.item_url}}" alt="{{this.item}}" width="100" />
-                <p>Price: {{this.price}} sproots</p>
+          {{#if (eq @index 0)}}
+            <div class="shop-shelf">
+              <!-- Shelf SVG background -->
+              <img src="/assets/shelves/plain_shelf.svg" alt="shelf" class="shelf-background" />
+              
+              <!-- Items on this shelf -->
+              <div class="shelf-items">
+          {{/if}}
 
-                {{#if (gte ../user.money this.price)}}          
-                <button popovertarget="my-popover-{{this.id}}">Buy</button>
-                <div popover id="my-popover-{{this.id}}">
-                    <p>Do you want to buy {{this.item}}?</p>
-                    <form action="/shop/{{this.id}}" method="POST">
-                        <button type="submit">Yes, buy for {{this.price}} sprouty</button>
-                    </form>
+          <!-- Shop Item -->
+          <div class="shop-item-wrapper">
+            <div class="shop-item-card">
+              <img src="{{this.item_url}}" alt="{{this.name}}" />
+              <div class="item-name">{{this.name}}</div>
+              <div class="item-price">
+                {{this.price}}
+                <img src="/assets/menu/leaf_currency.svg" alt="currency" class="price-currency-icon" />
+              </div>
+              
+              {{#if (gte ../user.money this.price)}}
+                <button class="buy-btn" popovertarget="my-popover-{{this.id}}">
+                  <img src="/assets/buttons/plain_button_small.svg" alt="buy button" class="buy-btn-bg" />
+                  <span class="buy-btn-text">Buy</span>
+                </button>
+                <div popover id="my-popover-{{this.id}}" class="buy-popover">
+                  <p>Do you want to buy {{this.name}}?</p>
+                  <form action="/shop/{{this.id}}" method="POST">
+                    <button type="submit" class="confirm-buy-btn">Yes</button>
+                  </form>
+                  <button popovertarget="my-popover-{{this.id}}" class="cancel-btn">Cancel</button>
                 </div>
-                {{else}}
-                <button disabled class="disabled">Buy</button>
-                {{/if}}
+              {{else}}
+                <div class="buy-btn disabled">
+                  <img src="/assets/buttons/plain_button_small.svg" alt="buy button" class="buy-btn-bg" />
+                  <span class="buy-btn-text">Buy</span>
+                </div>
+              {{/if}}
             </div>
+          </div>
+
+          {{#if (eq @index 2)}}
+              </div>
+            </div>
+            <div class="shop-shelf">
+              <img src="/assets/shelves/plain_shelf.svg" alt="shelf" class="shelf-background" />
+              <div class="shelf-items">
+          {{/if}}
+
+          {{#if (eq @index 5)}}
+              </div>
+            </div>
+            <div class="shop-shelf">
+              <img src="/assets/shelves/plain_shelf.svg" alt="shelf" class="shelf-background" />
+              <div class="shelf-items">
+          {{/if}}
+
+          {{#if (eq @index 8)}}
+              </div>
+            </div>
+            <div class="shop-shelf">
+              <img src="/assets/shelves/plain_shelf.svg" alt="shelf" class="shelf-background" />
+              <div class="shelf-items">
+          {{/if}}
         {{/each}}
+              </div>
+            </div>
+      </div>
+
+      {{> menu}}
     </div>
-
-    {{> menu}}
-
 
     <script>
         // Example of using the json helper to log shop data

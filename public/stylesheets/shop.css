@@ -1,8 +1,290 @@
-.out-of-stock{
-    position: relative;
-    top: -50%;
-    background-color: red;
-    transform: rotate(-30deg);
-    text-align: center;
-    padding: .5em
+/* Shop Page Styles */
+
+/* Money display at top */
+.user-money {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  padding: 1em;
+  text-align: right;
+  font-size: 20px;
+  font-weight: bold;
+  color: #8B7355;
+  border-bottom: 2px solid #f0f0f0;
+  z-index: 100;
+  margin: -1em -1em 1em -1em;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5em;
+}
+
+.currency-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+/* Centered Shop Button */
+.shop-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5em 0;
+}
+
+.shop-button {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.shop-button:hover {
+  transform: scale(1.05);
+}
+
+.shop-button:active {
+  transform: scale(0.98);
+}
+
+.button-bg {
+  width: 200px;
+  height: auto;
+  display: block;
+}
+
+.button-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "Pixelify Sans", sans-serif;
+  font-size: 28px;
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  pointer-events: none;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Shop shelves container */
+.shop-shelves-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4em;
+  margin: 3em 0 4em 0;
+}
+
+/* Individual shelf */
+.shop-shelf {
+  position: relative;
+  width: 100%;
+  min-height: 140px;
+  margin-bottom: 0.5em;
+}
+
+/* Shelf background SVG */
+.shelf-background {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  z-index: 1;
+}
+
+/* Items container on shelf */
+.shelf-items {
+  position: absolute;
+  bottom: 35px; /* Adjust based on your shelf SVG height */
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  padding: 0 0.5em;
+  gap: 0.5em;
+  z-index: 2;
+}
+
+/* Individual shop item wrapper */
+.shop-item-wrapper {
+  flex: 0 1 auto;
+  max-width: 100px;
+}
+
+/* Shop item card */
+.shop-item-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s;
+  padding: 0.2em;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.shop-item-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Item image */
+.shop-item-card img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  margin-bottom: 0.2em;
+}
+
+/* Item name */
+.item-name {
+  font-size: 11px;
+  text-align: center;
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 0.2em;
+  line-height: 1.2;
+  max-width: 100%;
+  word-wrap: break-word;
+}
+
+/* Item price */
+.item-price {
+  font-size: 12px;
+  font-weight: bold;
+  color: #8B7355;
+  margin-bottom: 0.1em;
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+}
+
+.price-currency-icon {
+  width: 16px !important;
+  height: 16px !important;
+  object-fit: contain;
+}
+
+/* Buy button */
+.buy-btn {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  transition: transform 0.2s;
+  width: 100%;
+}
+
+.buy-btn:not(.disabled):hover {
+  transform: scale(1.05);
+}
+
+.buy-btn:not(.disabled):active {
+  transform: scale(0.98);
+}
+
+.buy-btn.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.buy-btn-bg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.buy-btn-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "Pixelify Sans", sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
+  pointer-events: none;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Popover styling */
+.buy-popover {
+  padding: 0.5em;
+  border: 3px solid #8B7355;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  max-width: 400px;
+}
+
+.buy-popover p {
+  color: #333;
+  font-size: 16px;
+  margin-bottom: 0.2em;
+}
+
+.confirm-buy-btn {
+  position: relative;
+  font-family: "Pixelify Sans", sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 0;
+  background: url('/assets/buttons/plain_button_small.svg') no-repeat center;
+  background-size: contain;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 0.5em;
+  width: 100%;
+  height: 40px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s;
+}
+
+.confirm-buy-btn:hover {
+  transform: scale(1.05);
+}
+
+.cancel-btn {
+  position: relative;
+  font-family: "Pixelify Sans", sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 0;
+  background: url('/assets/buttons/plain_button_small.svg') no-repeat center;
+  background-size: contain;
+  color: white;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  height: 40px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s;
+}
+
+.cancel-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Responsive adjustments */
+@media (max-width: 393px) {
+  .shop-item-card img {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .item-name {
+    font-size: 10px;
+  }
+  
+  .shelf-items {
+    gap: 0.3em;
+    padding: 0 0.3em;
+  }
 }

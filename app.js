@@ -12,6 +12,21 @@ hbs.registerHelper('gte', function(a, b) {
     return a >= b;
 });
 
+// Helper for less than or equal comparison
+hbs.registerHelper('lte', function(a, b) {
+    return Number(a) <= Number(b);
+});
+
+// Helper for OR logic
+hbs.registerHelper('or', function() {
+    return Array.prototype.slice.call(arguments, 0, -1).some(Boolean);
+});
+
+// Helper for equality comparison
+hbs.registerHelper('eq', function(a, b) {
+    return a === b;
+});
+
 const indexRouter = require('./routes/index');
 const plantsRouter = require('./routes/plants');
 const shopRouter = require('./routes/shop');

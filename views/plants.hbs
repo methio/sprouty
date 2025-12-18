@@ -12,6 +12,32 @@
 
     <script src="/javascripts/plants.js" defer></script>
 
+    <style>
+      /* Alert indicator styling */
+      .plant-wrapper {
+        position: relative;
+        display: inline-block;
+      }
+
+      .alert-indicator {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background-color: #ff4444;
+        color: white;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 16px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        z-index: 10;
+      }
+    </style>
+
   </head>
   <body>
     <div id="container">
@@ -22,14 +48,19 @@
           <div class="shelve" id="{{this.shelf}}">
             <div class="plants-container flex row gap-1 align-baseline">
               {{#each this.plants}}
-                  <a href="/plants/{{this.plant_id}}" class="plant-card" id="plant-{{this.id}}">
-                    <img src="{{this.plant_url}}" alt="plant image" width="30"/>
-                  </a>
+              <div class="plant-wrapper">
+                <a href="/plants/{{this.plant_id}}" class="plant-card" id="plant-{{this.plant_id}}">
+                  <img src="{{this.plant_url}}" alt="plant image" width="30"/>
+                </a>
+                {{!-- Check if any level is <= 3 --}}
+                {{#if (or (lte this.water_level 3) (lte this.light_level 3) (lte this.temp_level 3))}}
+                  <div class="alert-indicator">!</div>
+                {{/if}}
+              </div>
               {{/each}}
               <button class="add-a-plant"
                       id="{{this.shelf}}-add-btn"
-                      data-shelve="{{this.shelf}}"
-              >
+                      data-shelve="{{this.shelf}}">
                 <img src="/assets/buttons/add_button.svg" alt="add plant" width="30"/>
               </button>
               <div class="pop-up" id="{{this.shelf}}-add-pop-up">Bonjour tout le monde !</div>  
@@ -39,7 +70,6 @@
         {{/each}}
       </div>
       
-      
       {{> menu}}
     </div>
 
@@ -47,46 +77,40 @@
       console.table({{{json plants}}});
 
       const formData = {
-        plant: "",
+        plant_family: "",
         plant_url: "",
         plant_id: 0,
         name: "",
         sensor_number: 0,
-      }
+      };
+
       const families = {{{json plants.plants_famillies}}};
 
       const popupsData = {
         first: `<h3>Add a new plant</h3>
                 <p>What family does your plant belong to?</p>
                 <div class="options-container flex row wrap gap-1">
-                  ${families.map( option => `<button class="family-option-btn"><img src="${option.plant_url}" alt="${option.plant_family}" width="50"/><p>${option.plant_family}</p></button>` ).join('')}
-                </div>
-                `,
+                  ${families.map(option =>`<button class="family-option-btn"><img src="${option.plant_url}" alt="${option.plant_family}" width="50"/><p>${option.plant_family}</p></button>`).join('')}
+                </div>`,
         second: `<h3>Add a new plant</h3>
                 <p>Name your plant</p>
                 <input type="text" id="plant-name-input" name="plant-name" placeholder="e.g. George"/>
                 <div class="flex row space-between">
                   <button id="cancel-add-plant-btn">Back</button>
                   <button id="next-add-plant-btn">Next</button>
-                </div>             
-                `,
+                </div>`,
         third: `<h3>Add a new plant</h3>
-                <p>How to connect my real plant?
-                Grab “sensor 1”
-                Put the sensor into the soil. Spiky part to the ground
-                </p>
+                <p>How to connect my real plant?</p>
                 <div class="flex row space-between">
                   <button id="cancel-add-plant-btn">Back</button>
                   <button id="finish-add-plant-btn">Finish</button>
-                </div>
-                `
+                </div>`
       };
 
       console.table(popupsData);
 
-
       const buttons = document.querySelectorAll('.add-a-plant');
-      buttons.forEach( button => {
+      buttons.forEach(button => {
         button.addEventListener('click', (e) => {
           // start form data
           const currentForm = formData;
@@ -98,65 +122,66 @@
           popUp.innerHTML = popupsData.first;
           popUp.style.display = 'block';
 
-          // add event listeners to family option buttons
-          const familyOptionButtons = popUp.querySelectorAll('.family-option-btn');
-          familyOptionButtons.forEach( familyBtn => {
+          // the whole container listens for clicks - the major change
+          popUp.onclick = (event) => {
 
             // when one option is clicked
-            familyBtn.addEventListener('click', (event) => {
+            //closest finds the deepest DOM element and goes by the node to the action
+            const familyBtn = event.target.closest('.family-option-btn');
+            if (familyBtn) {
               // add family data to form
-              currentForm.plant_family =  event.currentTarget.textContent;
-              currentForm.plant_url =  `assets/plants/${event.currentTarget.textContent}.svg`;
+              currentForm.plant_family = familyBtn.textContent.trim();
+              currentForm.plant_url = `assets/plants/${currentForm.plant_family}.svg`;
+              // generate a random id with this pattern : XXXXX five numbers
+              currentForm.plant_id = Math.floor(10000 + Math.random() * 90000);
 
               // display second pop-up
               popUp.innerHTML = popupsData.second;
+              return;
+            }
 
-              // add event listener to buttons
-              const nextBtn = popUp.querySelector('#next-add-plant-btn');
-              nextBtn.addEventListener('click', () => {
-                // get plant name
-                const nameInput = popUp.querySelector('#plant-name-input');
-                currentForm.name = nameInput.value;
+            // back button
+            if (event.target.id === 'cancel-add-plant-btn') {
+              popUp.innerHTML = popupsData.first;
+              return;
+            }
 
-                // display third pop-up
-                popUp.innerHTML = popupsData.third;
+            // next button
+            if (event.target.id === 'next-add-plant-btn') {
+              const nameInput = popUp.querySelector('#plant-name-input');
+              currentForm.name = nameInput.value;
 
-                // add event listener to finish button
-                const finishBtn = popUp.querySelector('#finish-add-plant-btn');
-                finishBtn.addEventListener('click', () => {
-                  // finish the form
-                  console.table(currentForm);
+              // display third pop-up
+              popUp.innerHTML = popupsData.third;
+              return;
+            }
 
-                  // send the post request to the server
-                  fetch('/plants/add', {
-                    method: 'POST',
-                    headers: {
-                      'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(currentForm),
-                  }).then( response => {
-                    if (response.ok) {
-                      console.log('Plant added successfully');
-                      // reload the page to see the new plant
-                      window.location.reload();
-                    } else {
-                      console.error('Error adding plant');
-                    }
-                  });
+            // finish button
+            if (event.target.id === 'finish-add-plant-btn') {
+              // finish the form
+              console.table(currentForm);
 
-                  // hide the pop-up
-                  popUp.style.display = 'none';                  
-                });
-
-                
-
+              // send the post request to the server
+              fetch('/plants/add', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(currentForm),
+              }).then(response => {
+                if (response.ok) {
+                  console.log('Plant added successfully');
+                  // reload the page to see the new plant
+                  window.location.reload();
+                } else {
+                  console.error('Error adding plant');
+                }
               });
-            });
-          });
 
+              // hide the pop-up
+              popUp.style.display = 'none';
+            }
+          };
         });
       });
-          
     </script>
   </body>
 </html>
