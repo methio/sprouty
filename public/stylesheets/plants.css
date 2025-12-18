@@ -1,24 +1,279 @@
+/* Plants Page Styles */
+
+/* Reset for plants container */
 .plants-container {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
-/* reset button styles */
-.plants-container button{
-    border: none;
-    margin: 0;
-    padding: 0;
-    width: auto;
-    overflow: visible;
-    background: transparent;
+/* Reset button styles */
+.plants-container button {
+  border: none;
+  margin: 0;
+  padding: 0;
+  background: transparent;
 }
 
-
-.pop-up{
-    display: none;
-    position: absolute;
-    background-color: salmon;
-    width: calc(393px - 2em); /* size minus parent margins */
-    padding: .5em;
+/* Popup */
+.pop-up {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  width: calc(100% - 2em);
+  max-width: 350px;
+  padding: 1em;
+  z-index: 100;
+  border-radius: 12px;
+  border: 3px solid #8B7355;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
+/* Body styling for home page */
+body.home {
+  background: transparent;
+}
+
+body.home #container {
+  border-radius: 28px;
+}
+
+/* Centered Home Title */
+.home-title-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5em 0 2em 0;
+}
+
+.home-title-button {
+  position: relative;
+  display: inline-block;
+}
+
+.home-title-bg {
+  width: 200px;
+  height: auto;
+  display: block;
+}
+
+.home-title-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "Pixelify Sans", sans-serif;
+  font-size: 28px;
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  pointer-events: none;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Shelves container */
+#shleves-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5em;
+  margin: 1.5em 0 2em 0;
+}
+
+/* Individual shelf */
+body.home .shelve {
+  position: relative;
+  width: 100%;
+  min-height: 160px;
+  margin-bottom: 0.5em;
+}
+
+/* Shelf SVG background */
+body.home .shelf-background {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Items on shelf */
+body.home .plants-container {
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5em;
+  padding: 0 0.5em;
+  z-index: 2;
+}
+
+/* Plant wrapper */
+body.home .plant-wrapper {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+/* Plant card */
+body.home .plant-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+body.home .plant-card img {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+}
+
+/* Alert indicator styling */
+.alert-indicator {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: #ff4444;
+  color: white;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
+
+/* Add plant button - positioned on the right */
+body.home .add-a-plant {
+  margin-left: auto;
+  cursor: pointer;
+}
+
+body.home .add-a-plant img {
+  width: 70px;
+  height: 70px;
+  display: block;
+}
+
+/* Shelf label */
+body.home .shelve > h3 {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 4px;
+  margin: 0;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(25, 16, 8, 0.45);
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Popup styling */
+.pop-up h3 {
+  margin-top: 0;
+  color: #8B7355;
+  text-align: center;
+}
+
+.pop-up p {
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+.pop-up input {
+  width: 100%;
+  padding: 0.5em;
+  margin-bottom: 1em;
+  border: 2px solid #8B7355;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.pop-up button {
+  font-family: "Pixelify Sans", sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 0.5em 1em;
+  background: url('/assets/buttons/plain_button_small.svg') no-repeat center;
+  background-size: contain;
+  color: white;
+  border: none;
+  cursor: pointer;
+  min-width: 80px;
+  height: 40px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s;
+}
+
+.pop-up button:hover {
+  transform: scale(1.05);
+}
+
+.options-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  justify-content: center;
+  margin: 1em 0;
+}
+
+.family-option-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5em;
+  background-color: rgba(139, 115, 85, 0.1);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.family-option-btn:hover {
+  background-color: rgba(139, 115, 85, 0.2);
+  transform: scale(1.05);
+}
+
+.family-option-btn img {
+  width: 50px !important;
+  height: 50px !important;
+  margin-bottom: 0.3em;
+}
+
+.family-option-btn p {
+  margin: 0;
+  font-size: 12px;
+  color: #333;
+}
+
+/* Responsive adjustments */
+@media (max-width: 393px) {
+  body.home .plant-card img {
+    width: 60px;
+    height: 60px;
+  }
+  
+  body.home .add-a-plant img {
+    width: 60px;
+    height: 60px;
+  }
+  
+  body.home .plants-container {
+    gap: 0.4em;
+    padding: 0 0.4em;
+  }
+}
