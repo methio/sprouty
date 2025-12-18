@@ -8,19 +8,135 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/plants.css" />
+
+    <script src="/javascripts/plants.js" defer></script>
+
   </head>
   <body>
-    <h1>Plant list</h1>
-   
-
-    {{#each plants}}
-      <div>
-        <h3>{{this.name}}</h3>
-        <p>Latin: {{this.scientific_name}}</p>
-        <p>state: {{this.health}}</p>
-      </div>
-    {{/each}}
+    <div id="container">
+      <h1>Plant list</h1>
     
-    {{> menu}}
+      <div id="shleves-container">
+        {{#each plants.shelves}}
+          <div class="shelve" id="{{this.shelf}}">
+            <div class="plants-container flex row gap-1 align-baseline">
+              {{#each this.plants}}
+                  <a href="/plants/{{this.plant_id}}" class="plant-card" id="plant-{{this.id}}">
+                    <img src="{{this.plant_url}}" alt="plant image" width="30"/>
+                  </a>
+              {{/each}}
+              <button class="add-a-plant"
+                      id="{{this.shelf}}-add-btn"
+                      data-shelve="{{this.shelf}}"
+              >
+                <img src="/assets/buttons/add_button.svg" alt="add plant" width="30"/>
+              </button>
+              <div class="pop-up" id="{{this.shelf}}-add-pop-up">Bonjour tout le monde !</div>  
+            </div>
+            <h3>{{this.shelf}}</h3>
+          </div>        
+        {{/each}}
+      </div>
+      
+      
+      {{> menu}}
+    </div>
+
+    <script>
+      console.table({{{json plants}}});
+
+      const formData = {
+        plant: "",
+        plant_url: "",
+        plant_id: 0,
+        name: "",
+        sensor_number: 0,
+      }
+      const families = {{{json plants.plants_famillies}}};
+
+      const popupsData = {
+        first: `<h3>Add a new plant</h3>
+                <p>What family does your plant belong to?</p>
+                <div class="options-container flex row wrap gap-1">
+                  ${families.map( option => `<button class="family-option-btn"><img src="${option.plant_url}" alt="${option.plant_family}" width="50"/><p>${option.plant_family}</p></button>` ).join('')}
+                </div>
+                `,
+        second: `<h3>Add a new plant</h3>
+                <p>Name your plant</p>
+                <input type="text" id="plant-name-input" name="plant-name" placeholder="e.g. George"/>
+                <div class="flex row space-between">
+                  <button id="cancel-add-plant-btn">Back</button>
+                  <button id="next-add-plant-btn">Next</button>
+                </div>             
+                `,
+        third: `<h3>Add a new plant</h3>
+                <p>How to connect my real plant?
+                Grab “sensor 1”
+                Put the sensor into the soil. Spiky part to the ground
+                </p>
+                <div class="flex row space-between">
+                  <button id="cancel-add-plant-btn">Back</button>
+                  <button id="finish-add-plant-btn">Finish</button>
+                </div>
+                `
+      };
+
+      console.table(popupsData);
+
+
+      const buttons = document.querySelectorAll('.add-a-plant');
+      buttons.forEach( button => {
+        button.addEventListener('click', (e) => {
+          // start form data
+          const currentForm = formData;
+          currentForm.shelve = e.currentTarget.dataset.shelve;
+
+          // display first pop-up
+          const shelve = e.currentTarget.dataset.shelve;
+          const popUp = document.getElementById(`${shelve}-add-pop-up`);
+          popUp.innerHTML = popupsData.first;
+          popUp.style.display = 'block';
+
+          // add event listeners to family option buttons
+          const familyOptionButtons = popUp.querySelectorAll('.family-option-btn');
+          familyOptionButtons.forEach( familyBtn => {
+
+            // when one option is clicked
+            familyBtn.addEventListener('click', (event) => {
+              // add family data to form
+              currentForm.plant_family =  event.currentTarget.textContent;
+
+              // display second pop-up
+              popUp.innerHTML = popupsData.second;
+
+              // add event listener to buttons
+              const nextBtn = popUp.querySelector('#next-add-plant-btn');
+              nextBtn.addEventListener('click', () => {
+                // get plant name
+                const nameInput = popUp.querySelector('#plant-name-input');
+                currentForm.name = nameInput.value;
+
+                // display third pop-up
+                popUp.innerHTML = popupsData.third;
+
+                // add event listener to finish button
+                const finishBtn = popUp.querySelector('#finish-add-plant-btn');
+                finishBtn.addEventListener('click', () => {
+                  // finish the form
+                  console.table(currentForm);
+                  popUp.style.display = 'none';
+                });
+
+                
+
+              });
+            });
+          });
+
+        });
+      });
+          
+    </script>
   </body>
 </html>
