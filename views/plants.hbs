@@ -106,6 +106,7 @@
             familyBtn.addEventListener('click', (event) => {
               // add family data to form
               currentForm.plant_family =  event.currentTarget.textContent;
+              currentForm.plant_url =  `assets/plants/${event.currentTarget.textContent}.svg`;
 
               // display second pop-up
               popUp.innerHTML = popupsData.second;
@@ -125,7 +126,26 @@
                 finishBtn.addEventListener('click', () => {
                   // finish the form
                   console.table(currentForm);
-                  popUp.style.display = 'none';
+
+                  // send the post request to the server
+                  fetch('/plants/add', {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(currentForm),
+                  }).then( response => {
+                    if (response.ok) {
+                      console.log('Plant added successfully');
+                      // reload the page to see the new plant
+                      window.location.reload();
+                    } else {
+                      console.error('Error adding plant');
+                    }
+                  });
+
+                  // hide the pop-up
+                  popUp.style.display = 'none';                  
                 });
 
                 

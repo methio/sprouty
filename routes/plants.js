@@ -9,7 +9,8 @@ router.get('/', function(req, res, next) {
   const plantData = fs.readFileSync('public/databases/data-plants.json', 'utf8');
   const plants = JSON.parse(plantData);
   // return the data to the request
-  console.log(`Plants: `, plants);
+  // console.log("--------------------------")
+  // console.table(plants.shelves);
   req.plants = plants;
   next();
 }, (req, res) => {  
@@ -18,10 +19,19 @@ router.get('/', function(req, res, next) {
 });
 
 // try to add a new plant
-router.post('/new', function(req, res) {
-  // res.send(`request: nouvelle plante`);
-  res.render('index', { title: 'Express'});
-
+router.post('/add', function(req, res) {
+  const plantData = fs.readFileSync('public/databases/data-plants.json', 'utf8');
+  const plants = JSON.parse(plantData);
+  let targetedShelfID;
+  plants.shelves.forEach((shelf, index) => {
+    if(shelf.shelf === req.body.shelve){
+      targetedShelfID = index;
+    }
+  });
+  plants.shelves[targetedShelfID].plants.push(req.body);
+  fs.writeFileSync('public/databases/data-plants.json', JSON.stringify(plants, null, 2));
+  // we reload in the front
+  res.sendStatus(200);
 });
 
 // if it exists, get plant by id
