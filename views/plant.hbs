@@ -2,26 +2,236 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />  
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>My Awesome App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/plants.css" />
+
+    <style>
+      .status-label,
+      .water-value,
+      .light-value,
+      .temp-value {
+        display: none !important;
+      }
+      .status-bars {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+        margin-top: 12px;
+      }
+      .status-bar { width: 100%; }
+      .status-svgbar {
+        display: block;
+        width: 100%;
+        max-width: 360px;
+        height: auto;
+      }
+    </style>
   </head>
+
   <body>
-    <h1>Plant Details</h1>
-    <h2> {{title}} </h2>
+    <div id="container">
+      <div class="header flex row space-between align-center">
+        <a href="/plants" class="back-button">Back to Shelves</a>
+        <div class="coins"> sproot: {{user.money}}</div>
+      </div>
 
-    <h3>{{plantData.name}}</h3>
-    <p>Latin: {{plantData.scientific_name}}</p>
-    <p>state: {{plantData.health}}</p>
+      <div class="plant-details">
+        <div class="plant-image" style="position: relative;">
+          <img src="/{{plant.plant_url}}" alt="{{plant.plant_family}}" width="150"/>
+          <div class="low-water-popup" id="low-water-popup" style="display:none;"></div>
+        </div>
 
+        <h1>{{#if plant.name}}{{plant.name}}{{else}}{{plant.plant_family}}{{/if}}</h1>
+
+        <div class="status-bars">
+          <div class="status-bar">
+            <img id="water-bar-img" class="status-svgbar"
+              src="/assets/status%20bar/water_{{plant.water_level}}.svg" alt="Water bar" />
+          </div>
+          <div class="status-bar">
+            <img id="light-bar-img" class="status-svgbar"
+              src="/assets/status%20bar/light_{{plant.light_level}}.svg" alt="Light bar" />
+          </div>
+          <div class="status-bar">
+            <img id="temp-bar-img" class="status-svgbar"
+              src="/assets/status%20bar/temp_{{plant.temp_level}}.svg" alt="Temperature bar" />
+          </div>
+        </div>
+
+        <div class="plant-actions flex row gap-1">
+          <button class="action-btn" id="water-btn">💧 Water Plant - click for more</button>
+        </div>
+      </div>
+
+      {{> menu}}
+    </div>
+
+    <script>
+      const plantData = {{{json plant}}};
+      const userData = {{{json user}}};
+
+      const ADAFRUIT_USERNAME = 'arianna2345';
+      const ADAFRUIT_KEY = 'aio_hYPQ3860LQRkqWGInEWsOXjrmwz3';
+
+      const FEEDS = {
+        water: 'soil-moisture',
+        light: 'light',
+        temp: 'temperature'
+      };
+
+      const lowWaterPopup = document.getElementById('low-water-popup');
+      const waterBtn = document.getElementById('water-btn');
+      const STATUS_ICON_BASE = '/assets/status%20bar';
+
+      const lowWaterPopupData = `
+        <h3>Water me!</h3>
+        <p>Take the watering cup and pour water into the pot.</p>
+        <p>(The alert will disappear after you water the plant)</p>
+        <button id="close-low-water-popup">Got it</button>
+      `;
+
+      function clampLevel(value, scale = 5) {
+        const n = Number(value);
+        if (!Number.isFinite(n)) return 1;
+        return Math.min(scale, Math.max(1, Math.round(n)));
+      }
+
+      function setBarImg(id, src) {
+        const el = document.getElementById(id);
+        if (el) el.src = src;
+      }
+
+      // thresholds -> 1..5
+      function mapSoilMoistureToLevel(raw) {
+        const v = Number(raw);
+        if (!Number.isFinite(v)) return 1;
+        if (v < 300) return 1;
+        if (v < 450) return 2;
+        if (v < 650) return 3;
+        if (v < 850) return 4;
+        return 5;
+      }
+
+      function mapLightToLevel(raw) {
+        const v = Number(raw);
+        if (!Number.isFinite(v)) return 1;
+        if (v < 500)  return 1;
+        if (v < 1500) return 2;
+        if (v < 3000) return 3;
+        if (v < 4500) return 4;
+        return 5;
+      }
+
+      function mapTempToLevel(raw) {
+        const v = Number(raw);
+        if (!Number.isFinite(v)) return 1;
+        if (v < 15) return 1;
+        if (v < 18) return 2;
+        if (v < 24) return 3;
+        if (v < 28) return 4;
+        return 5;
+      }
+
+      function updatePlantStatus(waterLevel, lightLevel, tempLevel) {
+        const levelScale = Number(plantData.level_scale) || 5;
+
+        waterLevel = clampLevel(waterLevel, levelScale);
+        lightLevel = clampLevel(lightLevel, levelScale);
+        tempLevel  = clampLevel(tempLevel, levelScale);
+
+        setBarImg('water-bar-img', `${STATUS_ICON_BASE}/water_${waterLevel}.svg`);
+        setBarImg('light-bar-img', `${STATUS_ICON_BASE}/light_${lightLevel}.svg`);
+        setBarImg('temp-bar-img',  `${STATUS_ICON_BASE}/temp_${tempLevel}.svg`);
+
+        if (lowWaterPopup) {
+          if (waterLevel <= 3) {
+            lowWaterPopup.innerHTML = lowWaterPopupData;
+            lowWaterPopup.style.display = 'block';
+            waterBtn.style.display = 'inline-block';
+          } else {
+            lowWaterPopup.style.display = 'none';
+            waterBtn.style.display = 'none';
+          }
+        }
+
+        plantData.water_level = waterLevel;
+        plantData.light_level = lightLevel;
+        plantData.temp_level  = tempLevel;
+      }
+
+      updatePlantStatus(plantData.water_level, plantData.light_level, plantData.temp_level);
+
+      if (lowWaterPopup) {
+        lowWaterPopup.onclick = (event) => {
+          if (event.target.id === 'close-low-water-popup') lowWaterPopup.style.display = 'none';
+        };
+      }
+
+      if (waterBtn) {
+        waterBtn.addEventListener('click', () => {
+          if (plantData.water_level <= 3) lowWaterPopup.style.display = 'block';
+        });
+      }
+
+      async function updatePlantInDatabase(waterLevel, lightLevel, tempLevel) {
+        try {
+          const response = await fetch(`/plants/${plantData.plant_id}/update-levels`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              water_level: waterLevel,
+              light_level: lightLevel,
+              temp_level: tempLevel
+            })
+          });
+        } catch (error) {
+          console.error('[DB] Error updating plant:', error);
+        }
+      }
+
+      async function fetchSensorData() {
+        try {
+          const headers = { 'X-AIO-Key': ADAFRUIT_KEY };
+
+          const [waterRes, lightRes, tempRes] = await Promise.all([
+            fetch(`https://io.adafruit.com/api/v2/${ADAFRUIT_USERNAME}/feeds/${FEEDS.water}/data/last`, { headers }),
+            fetch(`https://io.adafruit.com/api/v2/${ADAFRUIT_USERNAME}/feeds/${FEEDS.light}/data/last`, { headers }),
+            fetch(`https://io.adafruit.com/api/v2/${ADAFRUIT_USERNAME}/feeds/${FEEDS.temp}/data/last`, { headers })
+          ]);
+
+          if (!waterRes.ok || !lightRes.ok || !tempRes.ok) return;
+
+          const [waterData, lightData, tempData] = await Promise.all([
+            waterRes.json(),
+            lightRes.json(),
+            tempRes.json()
+          ]);
+
+          const waterLevel = mapSoilMoistureToLevel(waterData.value);
+          const lightLevel = mapLightToLevel(lightData.value);
+          const tempLevel  = mapTempToLevel(tempData.value);
+
+          updatePlantStatus(waterLevel, lightLevel, tempLevel);
+          updatePlantInDatabase(waterLevel, lightLevel, tempLevel);
+        } catch (error) {
+          console.error('[Adafruit] Error:', error);
+        }
+      }
+
+      const IS_STUART = Number(plantData.sensor_number) === 1 && String(plantData.name).toLowerCase() === 'stuart';
+
+      if (IS_STUART) {
+        console.log('[Sensors] Live updates ENABLED for Stuart');
+        fetchSensorData();
+        setInterval(fetchSensorData, 15000);
+      } else {
+        console.log('[Sensors] Live updates DISABLED for this plant:', plantData.name);
+      }
+    </script>
   </body>
-  <script>
-    console.table({{plantData}});
-  </script>
 </html>
-
-
-{{!-- water the plant pop-up --}}
-
-{{!-- read the values from adafruit io --}}
