@@ -4,13 +4,13 @@
 .user-money {
   position: sticky;
   top: 0;
-  background-color: white;
+  /* background-color: white; */
   padding: 1em;
   text-align: right;
   font-size: 20px;
   font-weight: bold;
   color: #8B7355;
-  border-bottom: 2px solid #f0f0f0;
+  /* border-bottom: 2px solid #f0f0f0; */
   z-index: 100;
   margin: -1em -1em 1em -1em;
   display: flex;
@@ -177,6 +177,14 @@
   cursor: pointer;
   transition: transform 0.2s;
   width: 100%;
+
+  border: none;
+    margin: 0;
+    /* padding: 0; */
+    width: auto;
+    overflow: visible;
+
+    background: transparent;
 }
 
 .buy-btn:not(.disabled):hover {

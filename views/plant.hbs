@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>My Awesome App</title>
+    <title>{{#if plant.name}}{{plant.name}}{{else}}{{plant.plant_family}}{{/if}} page</title>
     {{> ressources}}
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
@@ -16,69 +16,80 @@
   <body>
 
     {{!-- go back button and money display --}}
-    <div id="container">
+    <div id="container" class="grainy-background">
+
+
       <div class="header flex row space-between align-center">
-        <a href="/plants" class="back-button">Back to Shelves</a>
-        <div class="coins"> sproot: {{user.money}}</div>
+
+        <div id="header-left-col" class="header-col flex column gap-1">
+          <a href="/plants" class="back-button">Back to Shelves</a>
+          <div class="coins">{{user.money}} <img src="/assets/menu/leaf_currency.svg" alt="coin" width="16"/></div>
+          <h1>{{#if plant.name}}{{plant.name}}{{else}}{{plant.plant_family}}{{/if}}</h1>
+          <p>Sensor <span id="sensor-id"></span></p>
+        </div>
+
+        <div id="header-right-col" class="header-col">
+
+          <div class="status-bars">
+            <div class="status-bar">
+              <img id="water-bar-img" class="status-svgbar"
+                src="/assets/status%20bar/water_{{plant.water_level}}.svg" alt="Water bar" />
+            </div>
+
+            <div class="status-bar">
+              <img id="light-bar-img" class="status-svgbar"
+                src="/assets/status%20bar/light_{{plant.light_level}}.svg" alt="Light bar" />
+            </div>
+
+            <div class="status-bar">
+              <img id="temp-bar-img" class="status-svgbar"
+                src="/assets/status%20bar/temp_{{plant.temp_level}}.svg" alt="Temperature bar" />
+            </div>
+          </div>
+
+          <div class="plant-actions flex row gap-1" style="position: relative;">
+              <img id="inventory-btn" src="/assets/menu/inwentarz.svg" alt="inventory"/>
+            <div class="pop-up" id="inventory-popup" style="display:none;"></div>
+          </div>
+
+        </div>  <!-- end of right col -->
+
+      </div> <!-- end of header -->
+
+
+      <div id="plant-details">
+        {{!-- show plant --}}
+        <div id="plant-image" style="position: relative;">       
+
+          {{!-- photo of the plant --}}
+          <img src="/{{plant.plant_url}}" alt="{{plant.plant_family}}"/>
+
+          {{!-- overlay pot if there is one equipped --}}
+          {{#if plant.pot}}
+            <img src="{{plant.pot.item_url}}" id="plant-pot"/>
+          {{/if}}
+
+        </div>
       </div>
 
-      <div class="plant-details">
-        {{!-- show plant --}}
-        <div class="plant-image" style="position: relative;">
-          {{!-- if there is any pot equipped it shows it --}}
-          {{#if plant.pot}}
-            <img src="{{plant.pot.item_url}}" class="plant-pot"/>
-          {{/if}}
-          
-          {{!-- photo of the plant --}}
-          <img src="/{{plant.plant_url}}" alt="{{plant.plant_family}}" width="150"/>
-        </div>
-        {{!-- show plant custom name otherwise show plant family --}}
+      {{!-- water the plant button and popup + reward popup --}}
+      <div class="plant-actions flex row gap-1" style="position: relative;">
+        <button class="action-btn" id="water-btn" type="button">Water Plant <br>click for more</button>
 
-        <h1>{{#if plant.name}}{{plant.name}}{{else}}{{plant.plant_family}}{{/if}}</h1>
-
-        {{!-- inventory button --}}
-        <div class="plant-actions flex row gap-1" style="position: relative;">
-          <button class="inventory-btn" id="inventory-btn" type="button">
-            <img src="/assets/menu/inwentarz.svg" alt="inventory"/>
-          </button>
-          <div class="pop-up" id="inventory-popup" style="display:none;"></div>
-        </div>
-
-        {{!-- status bars and the images of the bars --}}
-        <div class="status-bars">
-          <div class="status-bar">
-            <img id="water-bar-img" class="status-svgbar"
-              src="/assets/status%20bar/water_{{plant.water_level}}.svg" alt="Water bar" />
-          </div>
-
-          <div class="status-bar">
-            <img id="light-bar-img" class="status-svgbar"
-              src="/assets/status%20bar/light_{{plant.light_level}}.svg" alt="Light bar" />
-          </div>
-
-          <div class="status-bar">
-            <img id="temp-bar-img" class="status-svgbar"
-              src="/assets/status%20bar/temp_{{plant.temp_level}}.svg" alt="Temperature bar" />
-          </div>
-        </div>
-
-
-        {{!-- water the plant button and popup + reward popup --}}
-        <div class="plant-actions flex row gap-1" style="position: relative;">
-          <button class="action-btn" id="water-btn" type="button">Water Plant <br>click for more</button>
-
-          <div class="pop-up" id="low-water-popup" style="display:none;"></div>
-          <div class="pop-up" id="thank-you-popup" style="display:none;"></div>
-        </div>
-
-
+        <div class="pop-up" id="low-water-popup" style="display:none;"></div>
+        <div class="pop-up" id="thank-you-popup" style="display:none;"></div>
       </div>
 
       {{> menu}}
     </div>
 
     <script>
+
+      // display sensor id 
+      const sID = document.querySelector('#sensor-id');
+      const rID = Math.floor(Math.random()*30);
+      sID.innerHTML = rID;
+
       //get plat data from the server
       const plantData = {{{json plant}}};
       const userData = {{{json user}}};

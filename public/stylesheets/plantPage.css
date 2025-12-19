@@ -1,10 +1,24 @@
-.inventory-btn img {
+#inventory-btn {
+  margin: auto;
   width: 70px;
   height: 70px;
   display: block;
+  margin-top: 20px;
 }
 
+.header-col {
+  width: 35%;
+  color: #3a3023;
+}
 
+#header-left-col h1{
+ margin: 0;
+padding: 0;
+}
+#header-left-col p{
+ margin: 0;
+padding: 0;
+}
 .status-label,
       .water-value,
       .light-value,
@@ -25,3 +39,17 @@
         max-width: 360px;
         height: auto;
       }
+
+#plant-details{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+#plant-image{
+  width: 200px;
+}
+
+#plant-pot{
+  position: relative;
+  top: -120px;
+}

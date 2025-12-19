@@ -10,14 +10,9 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/shop.css" />
   </head>
   <body>
-    <div id="container">
-    <div class="grainy-background">
+    <div id="container" class="grainy-background">
 
-      <!-- Money display at top -->
-      <div class="user-money">
-        <img src="/assets/menu/leaf_currency.svg" alt="currency" class="currency-icon" />
-        {{user.money}} sproots
-      </div>
+      
 
       <!-- Centered Shop Button -->
       <div class="shop-button-container">
@@ -25,6 +20,12 @@
           <img src="/assets/buttons/plain_button_big.svg" alt="shop button" class="button-bg" />
           <span class="button-text">SHOP</span>
         </div>
+      </div>
+
+      <!-- Money display at top -->
+      <div class="user-money">
+        <img src="/assets/menu/leaf_currency.svg" alt="currency" class="currency-icon" />
+        {{user.money}} sproots
       </div>
 
       <!-- Shop shelves with items -->
