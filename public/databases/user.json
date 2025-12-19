@@ -1,1 +1,8 @@
-{"name":"John Doe","age":30,"inventory":[{"item":"purple pot","item_url":"/assets/shop/purple_pot.svg","price":50,"id":2},{"item":"blue pot","item_url":"/assets/shop/blue_pot.svg","price":40,"id":0}],"money":180}
+{
+  "name": "John Doe",
+  "age": 30,
+  "inventory": [
+
+  ],
+  "money": 270
+}
