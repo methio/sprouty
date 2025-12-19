@@ -39,12 +39,7 @@
           "water_level": 5,
           "light_level": 4,
           "temp_level": 4,
-          "pot": {
-            "item": "blue pot",
-            "item_url": "/assets/shop/blue_pot.svg",
-            "price": 40,
-            "id": 0
-          }
+          "pot": null
         }
       ]
     },
