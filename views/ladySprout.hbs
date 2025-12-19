@@ -4,22 +4,68 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />  
     <title>Lady Sprout</title>
+    {{> ressources}}
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
-
-
+    <link rel="stylesheet" href="/stylesheets/ladySprout.css" />
   </head>
-  <body >
-    <h1>Lady Sprout</h1>
 
-    <div>
-      <h3>{{question.question}}</h3>
-      {{#each question.answers}}
-        <a href="/ladySprout?question={{../question.question_id}}&answer={{this.answer}}">
-          <button>{{this.answer}}</button>
-        </a>
+  <body >
+    <div id="container">
+    <div class="grainy-background">
+
+   <div class="lady-sprout-page">
+
+  <div class="ls-content">
+
+  <!-- Character -->
+  <div class="ls-character">
+    <img
+      src="/assets/lady_sprout/lady_sprouts_no_plants.svg"
+      alt="Lady Sprout"
+    />
+  </div>
+
+  <div class="ls-title">
+  <img
+    src="/assets/buttons/plain_button_big.svg"
+    class="ls-title-bg"
+    alt=""
+  />
+  <span class="ls-title-text">LADY SPROUT</span>
+</div>
+
+
+  <!-- Bubble + answers column -->
+  <div class="ls-right">
+
+    <!-- Chat bubble -->
+    <div class="ls-bubble">
+      <img
+        src="/assets/lady_sprout/chat_bubble_lady.svg"
+        class="ls-bubble-bg"
+        alt=""
+      />
+      <p class="ls-bubble-text">{{currentQuestion.text}}</p>
+    </div>
+
+    <!-- Answers UNDER bubble (big button svg) -->
+    <div class="ls-answers">
+      {{#each currentQuestion.answers}}
+        <form method="POST" action="/lady-sprout" class="ls-answer-form">
+          <input type="hidden" name="answer" value="{{this.value}}" />
+          <button class="ls-answer" type="submit">
+            <img src="/assets/buttons/plain_button_big.svg" alt="" />
+            <span>{{this.label}}</span>
+          </button>
+        </form>
       {{/each}}
     </div>
+
+  </div>
+</div>
+</div>
 
     {{> menu}}
     

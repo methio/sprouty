@@ -53,8 +53,8 @@
           "name": "Bob the III",
           "sensor_number": 2,
           "health": "",
-          "water_level": 1,
-          "light_level": "3",
+          "water_level": 4,
+          "light_level": "2",
           "temp_level": "4",
           "level_scale": 5,
           "pot": "/assets/shop/green_pot.svg"
@@ -65,7 +65,11 @@
           "plant_id": 48644,
           "name": "Kevin",
           "sensor_number": 0,
-          "shelve": "living_room"
+          "shelve": "living_room",
+          "water_level": 5,
+          "light_level": "5",
+          "temp_level": "4",
+          "level_scale": 5
         }
       ]
     },
@@ -80,7 +84,7 @@
           "name": "Bob the II",
           "sensor_number": 3,
           "health": "",
-          "water_level": 3,
+          "water_level": 5,
           "light_level": "5",
           "temp_level": "4",
           "level_scale": 5,
@@ -92,7 +96,8 @@
           "plant_id": 43171,
           "name": "Kevin the II",
           "sensor_number": 0,
-          "shelve": "kitchen"
+          "shelve": "kitchen",
+          "water_level": 1
         }
       ]
     }
