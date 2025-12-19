@@ -46,7 +46,7 @@
           
           
           {{#if plant.pot}}
-            <img src="{{plant.pot}}" class="plant-pot"/>
+            <img src="{{plant.pot.item_url}}" class="plant-pot"/>
           {{/if}}
         
           <img src="/{{plant.plant_url}}" alt="{{plant.plant_family}}" width="150"/>
@@ -336,8 +336,6 @@
           }
 
           const data = await response.json();
-
-          // update coins UI
           const coinsEl = document.querySelector('.coins');
           if (coinsEl) {
             coinsEl.textContent = `sproot: ${data.money}`;
@@ -398,7 +396,7 @@
           body: JSON.stringify({ inventoryIndex: index })
         });
 
-        location.reload(); // simplest + matches your style
+        location.reload();
       }
     };
 

@@ -1,8 +1,6 @@
 {
   "name": "John Doe",
   "age": 30,
-  "inventory": [
-
-  ],
-  "money": 270
+  "inventory": [],
+  "money": 120
 }
