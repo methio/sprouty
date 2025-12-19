@@ -65,7 +65,8 @@
           "plant_id": 48644,
           "name": "Kevin",
           "sensor_number": 0,
-          "shelve": "living_room"
+          "shelve": "living_room",
+          "water_level": 1
         }
       ]
     },
@@ -92,7 +93,8 @@
           "plant_id": 43171,
           "name": "Kevin the II",
           "sensor_number": 0,
-          "shelve": "kitchen"
+          "shelve": "kitchen",
+          "water_level": 1
         }
       ]
     }
