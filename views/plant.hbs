@@ -190,6 +190,7 @@
           if (waterLevel <= 3) {
             lowWaterPopup.innerHTML = lowWaterPopupData;
             waterBtn.style.display = 'inline-block';
+            plantData.water_level = waterLevel;
 
             if (waterLevel <=3 && plantData.reward_given === true){
               plantData.reward_given = false;
@@ -198,11 +199,16 @@
           } else {
             lowWaterPopup.style.display = 'none';
             waterBtn.style.display = 'none';
+
+            const previousWaterLevel = plantData.water_level;
+            plantData.water_level = waterLevel;
+            plantData.light_level = lightLevel;
+            plantData.temp_level  = tempLevel;
             
             if (
               waterLevel > 3 &&
-              plantData.reward_given === false &&
-              plantData.water_level <=3
+              plantData.reward_given !== true &&
+              previousWaterLevel <=3
             ) {
               thankYouPopup.innerHTML = thankYouPopupData;
               thankYouPopup.style.display = 'block';
@@ -230,9 +236,12 @@
           }
         }
 
-        plantData.water_level = waterLevel;
-        plantData.light_level = lightLevel;
-        plantData.temp_level  = tempLevel;
+        updatePlantInDatabase(
+          plantData.water_level,
+          plantData.light_level,
+          plantData.temp_level
+        );
+
       }
 
       updatePlantStatus(plantData.water_level, plantData.light_level, plantData.temp_level);
@@ -299,7 +308,6 @@
           const tempLevel  = mapTempToLevel(tempData.value);
 
           updatePlantStatus(waterLevel, lightLevel, tempLevel);
-          updatePlantInDatabase(waterLevel, lightLevel, tempLevel);
         } catch (error) {
           console.error('[Adafruit] Error:', error);
         }

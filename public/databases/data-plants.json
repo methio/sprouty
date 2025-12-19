@@ -27,7 +27,7 @@
           "temp_level": 5,
           "level_scale": 5,
           "pot": "/assets/shop/tablecloth_shelf.svg",
-          "reward_given": true
+          "reward_given": false
         },
         {
           "plant_family": "Succulent",
