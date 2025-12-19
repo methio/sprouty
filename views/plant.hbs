@@ -44,24 +44,21 @@
 
         <div class="plant-image" style="position: relative;">
           
+          
           {{#if plant.pot}}
             <img src="{{plant.pot}}" class="plant-pot"/>
           {{/if}}
         
           <img src="/{{plant.plant_url}}" alt="{{plant.plant_family}}" width="150"/>
-          <div class="low-water-popup" id="low-water-popup" style="display:none;"></div>
-          <div class="thank-you-popup" id="thank-you-popup" style="display:none;"></div>
-          <div class="inventory-popup" id="inventory-popup" style="display:none;"></div>
-
+          
         </div>
 
         <h1>{{#if plant.name}}{{plant.name}}{{else}}{{plant.plant_family}}{{/if}}</h1>
 
 
-        <div class="plant-actions flex row gap-1">
-          <button class="action-btn" id="inventory-btn">
-            Inventory
-          </button>
+        <div class="plant-actions flex row gap-1" style="position: relative;">
+          <button class="inventory-btn" id="inventory-btn" type="button">Inventory</button>
+          <div class="pop-up" id="inventory-popup" style="display:none;"></div>
         </div>
 
 
@@ -82,9 +79,13 @@
           </div>
         </div>
 
-        <div class="plant-actions flex row gap-1">
-          <button class="action-btn" id="water-btn">Water Plant <br>click for more</button>
+        <div class="plant-actions flex row gap-1" style="position: relative;">
+          <button class="action-btn" id="water-btn" type="button">Water Plant <br>click for more</button>
+
+          <div class="pop-up" id="low-water-popup" style="display:none;"></div>
+          <div class="pop-up" id="thank-you-popup" style="display:none;"></div>
         </div>
+
 
       </div>
 
@@ -188,8 +189,8 @@
         if (lowWaterPopup) {
           if (waterLevel <= 3) {
             lowWaterPopup.innerHTML = lowWaterPopupData;
-            lowWaterPopup.style.display = 'block';
             waterBtn.style.display = 'inline-block';
+
             if (waterLevel <=3 && plantData.reward_given === true){
               plantData.reward_given = false;
             }
@@ -200,7 +201,8 @@
             
             if (
               waterLevel > 3 &&
-              plantData.reward_given === false
+              plantData.reward_given === false &&
+              plantData.water_level <=3
             ) {
               thankYouPopup.innerHTML = thankYouPopupData;
               thankYouPopup.style.display = 'block';

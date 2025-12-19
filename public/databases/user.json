@@ -1,6 +1,1 @@
-{
-  "name": "John Doe",
-  "age": 30,
-  "inventory": [],
-  "money": 300
-}
+{"name":"John Doe","age":30,"inventory":[{"item":"purple pot","item_url":"/assets/shop/purple_pot.svg","price":50,"id":2}],"money":220}
