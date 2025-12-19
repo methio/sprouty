@@ -39,6 +39,15 @@
           "water_level": 5,
           "light_level": 4,
           "temp_level": 4
+        },
+        {
+          "plant_family": "Monstera",
+          "plant_url": "assets/plants/Monstera.svg",
+          "plant_id": 24765,
+          "name": "Julia",
+          "sensor_number": 0,
+          "reward_given": false,
+          "shelve": "beedroom"
         }
       ]
     },
@@ -65,6 +74,15 @@
           "plant_id": 48644,
           "name": "Kevin",
           "sensor_number": 0,
+          "shelve": "living_room"
+        },
+        {
+          "plant_family": "Succulent",
+          "plant_url": "assets/plants/Succulent.svg",
+          "plant_id": 85468,
+          "name": "Zosia",
+          "sensor_number": 0,
+          "reward_given": false,
           "shelve": "living_room"
         }
       ]

@@ -22,7 +22,7 @@ router.get('/', function(req, res) {
   const picked = question.answers.find(a => a.answer === answerText);
   
   if (picked.encyclopedia_id){
-    return res.redirect(`/encyclopedia/${picked.encyclopedia_id}`);
+    return res.redirect(`/encyclopedia/diseases/${picked.encyclopedia_id}`);
   }
   
   if (picked.id_of_next_question){
