@@ -31,10 +31,7 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
-/* Body styling for home page */
-body.home {
-  background: transparent;
-}
+
 
 body.home #container {
   border-radius: 28px;
