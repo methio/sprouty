@@ -1,1 +1,41 @@
-{"shop":[{"item":"blue pot","item_url":"/assets/shop/blue_pot.svg","price":40,"id":0},{"item":"purple shelf","item_url":"/assets/shop/tablecloth_shelf.svg","price":40,"id":3},{"item":"blue shelf","item_url":"/assets/shop/blue_shelf.svg","price":50,"id":4},{"item":"lamp shelf","item_url":"/assets/shop/chain_shelf.svg","price":60,"id":5}]}
+{
+"shop":[
+        {
+            "item": "blue pot",
+            "item_url": "/assets/shop/blue_pot.svg",
+            "price": 40,
+            "id": 0
+        },
+        {
+            "item": "green pot",
+            "item_url": "/assets/shop/green_pot.svg",
+            "price": 30,
+            "id": 1
+        },
+        {
+            "item": "purple pot",
+            "item_url": "/assets/shop/purple_pot.svg",
+            "price": 50,
+            "id": 2
+        },
+        {
+            "item": "purple shelf",
+            "item_url": "/assets/shop/tablecloth_shelf.svg",
+            "price": 40,
+            "id": 3
+        },
+        {
+            "item": "blue shelf",
+            "item_url": "/assets/shop/blue_shelf.svg",
+            "price": 50,
+            "id": 4
+        },
+        {
+            "item": "lamp shelf",
+            "item_url": "/assets/shop/chain_shelf.svg",
+            "price": 60,
+            "id": 5
+        }
+    ]
+
+}
