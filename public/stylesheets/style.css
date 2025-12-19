@@ -14,15 +14,15 @@ body {
   margin: auto;
   /* margin-top: 1em; */
   padding: 1em;
-  background-color: white;
+  /* background-color: white; */
 }
 
 a {
-  color: #00B7FF;
+  color: #3a3023;
 }
 
 p {
-  color: sandybrown;
+  color: #3a3023;
 }
 
 /** FLEX UTLITIES **/
