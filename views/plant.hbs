@@ -11,33 +11,11 @@
     <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
     <link rel="stylesheet" type="text/css" href="/stylesheets/plants.css" />
     <link rel="stylesheet" type="text/css" href="/stylesheets/plantPage.css" />
-
-
-    <style>
-      .status-label,
-      .water-value,
-      .light-value,
-      .temp-value {
-        display: none !important;
-      }
-      .status-bars {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        width: 100%;
-        margin-top: 12px;
-      }
-      .status-bar { width: 100%; }
-      .status-svgbar {
-        display: block;
-        width: 100%;
-        max-width: 360px;
-        height: auto;
-      }
-    </style>
   </head>
 
   <body>
+
+    {{!-- go back button and money display --}}
     <div id="container">
       <div class="header flex row space-between align-center">
         <a href="/plants" class="back-button">Back to Shelves</a>
@@ -45,21 +23,21 @@
       </div>
 
       <div class="plant-details">
-
+        {{!-- show plant --}}
         <div class="plant-image" style="position: relative;">
-          
-          
+          {{!-- if there is any pot equipped it shows it --}}
           {{#if plant.pot}}
             <img src="{{plant.pot.item_url}}" class="plant-pot"/>
           {{/if}}
-        
-          <img src="/{{plant.plant_url}}" alt="{{plant.plant_family}}" width="150"/>
           
+          {{!-- photo of the plant --}}
+          <img src="/{{plant.plant_url}}" alt="{{plant.plant_family}}" width="150"/>
         </div>
+        {{!-- show plant custom name otherwise show plant family --}}
 
         <h1>{{#if plant.name}}{{plant.name}}{{else}}{{plant.plant_family}}{{/if}}</h1>
 
-
+        {{!-- inventory button --}}
         <div class="plant-actions flex row gap-1" style="position: relative;">
           <button class="inventory-btn" id="inventory-btn" type="button">
             <img src="/assets/menu/inwentarz.svg" alt="inventory"/>
@@ -67,7 +45,7 @@
           <div class="pop-up" id="inventory-popup" style="display:none;"></div>
         </div>
 
-
+        {{!-- status bars and the images of the bars --}}
         <div class="status-bars">
           <div class="status-bar">
             <img id="water-bar-img" class="status-svgbar"
@@ -85,6 +63,8 @@
           </div>
         </div>
 
+
+        {{!-- water the plant button and popup + reward popup --}}
         <div class="plant-actions flex row gap-1" style="position: relative;">
           <button class="action-btn" id="water-btn" type="button">Water Plant <br>click for more</button>
 
@@ -99,25 +79,30 @@
     </div>
 
     <script>
+      //get plat data from the server
       const plantData = {{{json plant}}};
       const userData = {{{json user}}};
 
+      //credentials for adafruitIo
       const ADAFRUIT_USERNAME = 'arianna2345';
       const ADAFRUIT_KEY = 'aio_wIJz91wH4hTnzVDHs5bhwLNTg4CW';
 
+      //name of the three feeds on adafruit
       const FEEDS = {
         water: 'soil-moisture',
         light: 'light',
         temp: 'temperature'
       };
-
+      
+      // folder path
       const STATUS_ICON_BASE = '/assets/status%20bar';
 
 
-      //water me popup
+      //water me popup get references for popup and button elements
       const lowWaterPopup = document.getElementById('low-water-popup');
       const waterBtn = document.getElementById('water-btn');
       
+      //text to display on the popup
       const lowWaterPopupData = `
         <h3>Water me!</h3>
         <p>Take the watering cup and pour water into the pot.</p>
@@ -136,19 +121,20 @@
         <button id="close-thank-you-popup">Got it</button>
       `;
 
-
+      // makes sure a level stays between 1 and 5
+      // converts values to number and rounds them up
       function clampLevel(value, scale = 5) {
         const n = Number(value);
         if (!Number.isFinite(n)) return 1;
         return Math.min(scale, Math.max(1, Math.round(n)));
       }
-
+      // finds the image by its id and changes its source to a new image file
       function setBarImg(id, src) {
         const el = document.getElementById(id);
         if (el) el.src = src;
       }
 
-      // thresholds -> 1..5
+      // converts moisture sensor values into numbers 1-5
       function mapSoilMoistureToLevel(raw) {
         const v = Number(raw);
         if (!Number.isFinite(v)) return 1;
@@ -179,13 +165,17 @@
         return 5;
       }
 
+
+      //gets the maximum level scale
       function updatePlantStatus(waterLevel, lightLevel, tempLevel) {
         const levelScale = Number(plantData.level_scale) || 5;
-
+      
+      //make sure all three levels are valid (1-5)
         waterLevel = clampLevel(waterLevel, levelScale);
         lightLevel = clampLevel(lightLevel, levelScale);
         tempLevel  = clampLevel(tempLevel, levelScale);
 
+      //updates all three status bar images
         setBarImg('water-bar-img', `${STATUS_ICON_BASE}/water_${waterLevel}.svg`);
         setBarImg('light-bar-img', `${STATUS_ICON_BASE}/light_${lightLevel}.svg`);
         setBarImg('temp-bar-img',  `${STATUS_ICON_BASE}/temp_${tempLevel}.svg`);
@@ -194,23 +184,29 @@
         //water me + reward popups
         if (lowWaterPopup) {
           if (waterLevel <= 3) {
+            //show the pop up if water level is <=3
             lowWaterPopup.innerHTML = lowWaterPopupData;
             waterBtn.style.display = 'inline-block';
             plantData.water_level = waterLevel;
-
+            
+            //if water level is low again reset the rewad
             if (waterLevel <=3 && plantData.reward_given === true){
               plantData.reward_given = false;
             }
             
           } else {
+            //if water is above 3 hide the popup
             lowWaterPopup.style.display = 'none';
             waterBtn.style.display = 'none';
 
+            //remember what the water level was before
+            //update all sotred levels to new values
             const previousWaterLevel = plantData.water_level;
             plantData.water_level = waterLevel;
             plantData.light_level = lightLevel;
             plantData.temp_level  = tempLevel;
             
+            //check if user should get a reward
             if (
               waterLevel > 3 &&
               plantData.reward_given !== true &&
@@ -221,8 +217,11 @@
 
               reward();
 
+              //mark that the reward was given
               plantData.reward_given = true;
 
+              //send data to server to save that reward was given
+              //user doesnt get the reward every time they refresh
               fetch(`/plants/${plantData.plant_id}/update-levels`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -234,7 +233,7 @@
                 })
               });
             
-
+            //after 15 seconds hide the popup
               setTimeout(() => {
                 thankYouPopup.style.display = 'none';
               }, 15000);
@@ -242,6 +241,7 @@
           }
         }
 
+        //save the new levels to the database
         updatePlantInDatabase(
           plantData.water_level,
           plantData.light_level,
@@ -250,6 +250,7 @@
 
       }
 
+      //when page loads  update the status based on saved data
       updatePlantStatus(plantData.water_level, plantData.light_level, plantData.temp_level);
 
       if (lowWaterPopup) {
@@ -274,7 +275,8 @@
 
 
 
-
+      //save plant status to databse
+      //async means that this can wait for server response without freezing the page
       async function updatePlantInDatabase(waterLevel, lightLevel, tempLevel) {
         try {
           const response = await fetch(`/plants/${plantData.plant_id}/update-levels`, {
@@ -290,46 +292,53 @@
           console.error('[DB] Error updating plant:', error);
         }
       }
-
+      //gets latest data from the real sensor
       async function fetchSensorData() {
         try {
           const headers = { 'X-AIO-Key': ADAFRUIT_KEY };
-
+      
+      //gets data from all three sensors
           const [waterRes, lightRes, tempRes] = await Promise.all([
             fetch(`https://io.adafruit.com/api/v2/${ADAFRUIT_USERNAME}/feeds/${FEEDS.water}/data/last`, { headers }),
             fetch(`https://io.adafruit.com/api/v2/${ADAFRUIT_USERNAME}/feeds/${FEEDS.light}/data/last`, { headers }),
             fetch(`https://io.adafruit.com/api/v2/${ADAFRUIT_USERNAME}/feeds/${FEEDS.temp}/data/last`, { headers })
           ]);
 
+          // it has to wait for all three feeds to send data and otherwise it has to stop the process
           if (!waterRes.ok || !lightRes.ok || !tempRes.ok) return;
-
+        
+        //convert to json format
           const [waterData, lightData, tempData] = await Promise.all([
             waterRes.json(),
             lightRes.json(),
             tempRes.json()
           ]);
-
+        //convert to 1-5 using what we defined before
           const waterLevel = mapSoilMoistureToLevel(waterData.value);
           const lightLevel = mapLightToLevel(lightData.value);
           const tempLevel  = mapTempToLevel(tempData.value);
-
+        
+        //update the page with the new sensor data
           updatePlantStatus(waterLevel, lightLevel, tempLevel);
         } catch (error) {
           console.error('[Adafruit] Error:', error);
         }
       }
-
+      //check if youre stuart, must have sensor 1 and named stuart
       const IS_STUART = Number(plantData.sensor_number) === 1 && String(plantData.name).toLowerCase() === 'stuart';
 
+      // logs for the conssole to check if the connection is successful and fetching the data from the sensors
       if (IS_STUART) {
         console.log('[Sensors] Live updates ENABLED for Stuart');
         fetchSensorData();
         setInterval(fetchSensorData, 15000);
+      //if youre not stuart log is diabled show only saved data
       } else {
         console.log('[Sensors] Live updates DISABLED for this plant:', plantData.name);
       }
 
-
+      //gives user coins for watering the plant
+      //send request to server to add coins to user
       async function reward() {
         try {
           const response = await fetch('/plants/user/reward-watering', {
@@ -340,8 +349,10 @@
             console.error('Reward failed');
             return;
           }
-
+        //get response data - new coin total
           const data = await response.json();
+          
+         //find coin display, update the new total 
           const coinsEl = document.querySelector('.coins');
           if (coinsEl) {
             coinsEl.textContent = `sproot: ${data.money}`;
@@ -352,10 +363,14 @@
       }
 
 
+    //defining the elements for the inventory button and popup
     const inventoryPopup = document.getElementById('inventory-popup');
     const inventoryBtn = document.getElementById('inventory-btn');
 
+  //create inventory display   
     function renderInventory() {
+
+      //if there are no items in the user JSON in the inventory array it shows that there are no items yet
       if (!userData.inventory || userData.inventory.length === 0) {
         inventoryPopup.innerHTML = `
           <h3>Inventory</h3>
@@ -364,7 +379,7 @@
         `;
         return;
       }
-
+    //if user has items loop through each item, show item and equip button
       inventoryPopup.innerHTML = `
         <h3>Inventory</h3>
         <div class="inventory-items">
@@ -380,7 +395,7 @@
       `;
     }
 
-
+    //show popup
     if (inventoryBtn) {
       inventoryBtn.addEventListener('click', () => {
         renderInventory();
@@ -392,10 +407,10 @@
       if (event.target.id === 'close-inventory') {
         inventoryPopup.style.display = 'none';
       }
-
+    //if equip clicked get the index of item
       if (event.target.classList.contains('equip-btn')) {
         const index = event.target.dataset.index;
-
+    // send request to server to equip item x on tis plant and save it
         await fetch(`/plants/${plantData.plant_id}/equip`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },

@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 const fs = require('fs');
-const { title } = require('process');
 
 
 // get all plants
@@ -21,6 +20,7 @@ router.get('/', function(req, res, next) {
 router.post('/add', function(req, res) {
   const plantData = fs.readFileSync('public/databases/data-plants.json', 'utf8');
   const plants = JSON.parse(plantData);
+  //stores the index of the shelf - where the plant should be added
   let targetedShelfID;
   plants.shelves.forEach((shelf, index) => {
     if(shelf.shelf === req.body.shelve){
@@ -73,6 +73,7 @@ router.get('/:id', function(req, res) {
     plant: req.plantData,
     shelf: req.shelfName,
     user: req.userData,
+    // sets plant title using plant name of family
     title: `Plant ${req.plantData.name || req.plantData.plant_family}`
   });
 });
@@ -92,8 +93,9 @@ router.post('/:id/update-levels', function(req, res) {
     for (let shelf of plants.shelves) {
       for (let plant of shelf.plants) {
         if (plant.plant_id == plantId) {
+          // stores previous water level for comparison
           const prevWaterLevel = Number(plant.water_level);
-
+          // updates the plant status
           plant.water_level = water_level;
           plant.light_level = light_level;
           plant.temp_level = temp_level;
@@ -128,7 +130,7 @@ router.post('/:id/update-levels', function(req, res) {
 });
 
 
-// update user money
+// update user money after watering the plant
 router.post('/user/reward-watering', function(req, res) {
   try {
     const userData = fs.readFileSync('public/databases/user.json', 'utf8');
@@ -161,13 +163,14 @@ router.post('/:id/equip', function(req, res) {
     const userData = fs.readFileSync('public/databases/user.json', 'utf8');
     const user = JSON.parse(userData);
 
+    // gets the item and stops if it does not exist
     const item = user.inventory[inventoryIndex];
     if (!item) {
       return res.status(400).send('Item not found');
     }
 
     // find plant
-    let targetPlant = null;
+    let targetPlant = null; //placeholder for the plant
     for (let shelf of plants.shelves) {
       for (let plant of shelf.plants) {
         if (plant.plant_id == plantId) {
@@ -182,7 +185,7 @@ router.post('/:id/equip', function(req, res) {
       return res.status(404).send('Plant not found');
     }
 
-    // swap
+    // swap - returns old pot to the inventory
     if (targetPlant.pot && typeof targetPlant.pot === 'object') {
       user.inventory.push(targetPlant.pot);
     }
