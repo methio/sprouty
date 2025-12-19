@@ -9,9 +9,7 @@ router.get('/', function(req, res, next) {
   // first we get the data
   const plantData = fs.readFileSync('public/databases/data-plants.json', 'utf8');
   const plants = JSON.parse(plantData);
-  // return the data to the request
-  // console.log("--------------------------")
-  // console.table(plants.shelves);
+
   req.plants = plants;
   next();
 }, (req, res) => {  
@@ -65,8 +63,6 @@ router.param('id', function(req, res, next, id) {
   req.shelfName = foundShelf;
   req.userData = user;
   next();
-  // return the data to the request
-  // console.log(`Plant ${id} data: `, plants[id]);
 });
 
 // if it exists, get plant by id
@@ -152,6 +148,7 @@ router.post('/user/reward-watering', function(req, res) {
   }
 });
 
+
 // equip item from inventory to plant
 router.post('/:id/equip', function(req, res) {
   try {
@@ -185,10 +182,15 @@ router.post('/:id/equip', function(req, res) {
       return res.status(404).send('Plant not found');
     }
 
-    // apply item (pot)
-    targetPlant.pot = item.item_url;
+    // swap
+    if (targetPlant.pot && typeof targetPlant.pot === 'object') {
+      user.inventory.push(targetPlant.pot);
+    }
 
-    // remove item from inventory
+    // equip new pot
+    targetPlant.pot = item;
+
+    // remove from inventory
     user.inventory.splice(inventoryIndex, 1);
 
     fs.writeFileSync(
@@ -207,7 +209,6 @@ router.post('/:id/equip', function(req, res) {
     res.status(500).send('Server error');
   }
 });
-
 
 
 
