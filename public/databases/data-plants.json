@@ -22,11 +22,12 @@
           "plant_id": 1,
           "name": "Stuart",
           "sensor_number": 1,
-          "water_level": 2,
+          "water_level": 5,
           "light_level": 4,
-          "temp_level": 3,
+          "temp_level": 5,
           "level_scale": 5,
-          "pot": ""
+          "pot": "/assets/shop/tablecloth_shelf.svg",
+          "reward_given": true
         },
         {
           "plant_family": "Succulent",

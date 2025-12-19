@@ -85,7 +85,7 @@ router.get('/:id', function(req, res) {
 router.post('/:id/update-levels', function(req, res) {
   try {
     const plantId = req.params.id;
-    const { water_level, light_level, temp_level } = req.body;
+    const { water_level, light_level, temp_level, reward_given } = req.body;
     
     // Read the plant data
     const plantData = fs.readFileSync('public/databases/data-plants.json', 'utf8');
@@ -96,9 +96,21 @@ router.post('/:id/update-levels', function(req, res) {
     for (let shelf of plants.shelves) {
       for (let plant of shelf.plants) {
         if (plant.plant_id == plantId) {
+          const prevWaterLevel = Number(plant.water_level);
+
           plant.water_level = water_level;
           plant.light_level = light_level;
           plant.temp_level = temp_level;
+
+          if (typeof reward_given === 'boolean'){
+            plant.reward_given = reward_given;
+          }
+
+          if (prevWaterLevel >3 && water_level <=3) {
+            plant.reward_given = false;
+          }
+
+
           updated = true;
           break;
         }
@@ -119,7 +131,83 @@ router.post('/:id/update-levels', function(req, res) {
   }
 });
 
+
 // update user money
+router.post('/user/reward-watering', function(req, res) {
+  try {
+    const userData = fs.readFileSync('public/databases/user.json', 'utf8');
+    const user = JSON.parse(userData);
+
+    user.money = Number(user.money) + 10;
+
+    fs.writeFileSync(
+      'public/databases/user.json',
+      JSON.stringify(user, null, 2)
+    );
+
+    res.json({ money: user.money });
+  } catch (error) {
+    console.error('Error rewarding user:', error);
+    res.status(500).send('Server error');
+  }
+});
+
+// equip item from inventory to plant
+router.post('/:id/equip', function(req, res) {
+  try {
+    const plantId = req.params.id;
+    const { inventoryIndex } = req.body;
+
+    const plantData = fs.readFileSync('public/databases/data-plants.json', 'utf8');
+    const plants = JSON.parse(plantData);
+
+    const userData = fs.readFileSync('public/databases/user.json', 'utf8');
+    const user = JSON.parse(userData);
+
+    const item = user.inventory[inventoryIndex];
+    if (!item) {
+      return res.status(400).send('Item not found');
+    }
+
+    // find plant
+    let targetPlant = null;
+    for (let shelf of plants.shelves) {
+      for (let plant of shelf.plants) {
+        if (plant.plant_id == plantId) {
+          targetPlant = plant;
+          break;
+        }
+      }
+      if (targetPlant) break;
+    }
+
+    if (!targetPlant) {
+      return res.status(404).send('Plant not found');
+    }
+
+    // apply item (pot)
+    targetPlant.pot = item.item_url;
+
+    // remove item from inventory
+    user.inventory.splice(inventoryIndex, 1);
+
+    fs.writeFileSync(
+      'public/databases/data-plants.json',
+      JSON.stringify(plants, null, 2)
+    );
+
+    fs.writeFileSync(
+      'public/databases/user.json',
+      JSON.stringify(user, null, 2)
+    );
+
+    res.sendStatus(200);
+  } catch (error) {
+    console.error('Equip error:', error);
+    res.status(500).send('Server error');
+  }
+});
+
 
 
 
