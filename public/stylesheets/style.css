@@ -12,7 +12,7 @@ body {
   max-width: calc(393px - 1em); /* iPhone 14 Pro width */
   min-height: 852px; /* iPhone 14 Pro height */;
   margin: auto;
-  margin-top: 1em;
+  /* margin-top: 1em; */
   padding: 1em;
   background-color: white;
 }

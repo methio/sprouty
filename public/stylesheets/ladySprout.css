@@ -5,18 +5,20 @@
   box-sizing: border-box;
 }
 
-.ls-content {
-  display: flex;
-  align-items: flex-start; /* bubble higher */
-  gap: 14px;
-  margin-top: 12px;
-}
 
-.ls-character {
-  width: 105px;
-  flex: 0 0 105px;
+#ls-title-text{
+  font-family: "Pixelify Sans", sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #fff;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, .35);
+
+  position: relative;
+  top: -70px;
+  margin: auto;
 }
-.ls-character img { width: 100%; height: auto; display: block; }
 
 .ls-right {
   flex: 1;
@@ -26,25 +28,61 @@
 }
 
 /* raise bubble */
-.ls-bubble {
-  position: relative;
+#ls-question {
   width: 100%;
-  max-width: 280px;
-  margin-top: 8px; /* adjust: more negative = higher */
+  height: 250px;
+  background-image: url('/assets/lady_sprout/chat_bubble_lady.svg');
+  background-size: contain;   
+  background-repeat: no-repeat;
+  /* transform: scaleX(-1); */
+}
+#ls-bubble-text {
+  padding: 1.5em;
+  color: #3a3023;
 }
 
-.ls-bubble-bg { width: 100%; height: auto; display: block; }
-
-.ls-bubble-text {
-  position: absolute;
-  top: 16px;
-  left: 18px;
-  right: 18px;
-  margin: 0;
-  font-size: 14px;
-  line-height: 1.25;
+#ls-an-container{
+  gap: 2em;
+    align-items: flex-end;
 }
 
+#ls-character {
+  width: 150px;
+}
+#ls-character img { width: 100%; height: auto; display: block; }
+
+
+#ls-answers{
+  /* background-color: blue; */
+  flex-grow: 2;
+  
+  
+}
+
+#ls-answers a {
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  height: 3.5em;
+  background-image: url('/assets/buttons/plain_button_big.svg');
+  background-size: cover;  
+  text-decoration: none;
+
+}
+
+#ls-answers a p{
+  width: 100%;
+  text-align: center;
+  margin:0;
+
+  font-family: "Pixelify Sans", sans-serif;
+  /* font-size: 26px; */
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #3a3023;
+  
+}
+/* 
 .ls-answers {
   margin-top: 12px;
   display: flex;
@@ -74,4 +112,4 @@
   align-items: center;
   justify-content: center;
   font-size: 14px;
-}
+} */

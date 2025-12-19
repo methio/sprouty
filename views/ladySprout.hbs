@@ -1,73 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />  
-    <title>Lady Sprout</title>
-    {{> ressources}}
+   <head>
+      <meta charset="utf-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <title>Lady Sprout</title>
+      {{> ressources}}
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+      <link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
+      <link rel="stylesheet" href="/stylesheets/ladySprout.css" />
+   </head>
+   <body >
+      <div id="container" class="grainy-background flex column centered">
+         <!-- Title -->
+         <div id="ls-title" class="flex column centered">
+            <img
+               src="/assets/buttons/plain_button_big.svg"
+               class="ls-title-bg"
+               alt=""
+               />
+            <h1 id="ls-title-text">LADY SPROUT</h1>
+         </div>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
-    <link rel="stylesheet" href="/stylesheets/ladySprout.css" />
-  </head>
+         <!-- Question -->
+          <div id="ls-question" class="flex row centered">
+               <p id="ls-bubble-text">{{question.question}}</p>
+          </div>
 
-  <body >
-    <div id="container">
-    <div class="grainy-background">
+         <!-- Lady sprout sprite - Answers -->
+        <div id="ls-an-container" class="flex row no-wrap">
+         
+          <div id="ls-character">
+              <img
+                src="/assets/lady_sprout/lady_sprouts_no_plants.svg"
+                alt="Lady Sprout"
+                />
+          </div>
 
-   <div class="lady-sprout-page">
+          <div id="ls-answers" class="flex column centered gap-1">
+              {{#each question.answers}}
+              {{!-- <form method="GET" action="/ladySprout" class="ls-answer-form">
+                <input type="hidden" name="answer" value="{{this.value}}" />
+                <button class="ls-answer" type="submit">
+                <img src="/assets/buttons/plain_button_big.svg" alt="" />
+                <span>{{this.answer}}</span>
+                </button>
+              </form> --}}
+              <a href="/ladySprout?question={{../question.question_id}}&answer={{this.answer}}" class="flex column">
+                  {{!-- <img src="/assets/buttons/plain_button_big.svg" alt="" /> --}}
+                  <p>{{this.answer}}</p>
+              </a>
+        
+              {{/each}}
+          </div>
+        </div>
+      </div>
+      </div>
+      {{> menu}}
 
-  <div class="ls-content">
-
-  <!-- Character -->
-  <div class="ls-character">
-    <img
-      src="/assets/lady_sprout/lady_sprouts_no_plants.svg"
-      alt="Lady Sprout"
-    />
-  </div>
-
-  <div class="ls-title">
-  <img
-    src="/assets/buttons/plain_button_big.svg"
-    class="ls-title-bg"
-    alt=""
-  />
-  <span class="ls-title-text">LADY SPROUT</span>
-</div>
-
-
-  <!-- Bubble + answers column -->
-  <div class="ls-right">
-
-    <!-- Chat bubble -->
-    <div class="ls-bubble">
-      <img
-        src="/assets/lady_sprout/chat_bubble_lady.svg"
-        class="ls-bubble-bg"
-        alt=""
-      />
-      <p class="ls-bubble-text">{{currentQuestion.text}}</p>
-    </div>
-
-    <!-- Answers UNDER bubble (big button svg) -->
-    <div class="ls-answers">
-      {{#each currentQuestion.answers}}
-        <form method="POST" action="/lady-sprout" class="ls-answer-form">
-          <input type="hidden" name="answer" value="{{this.value}}" />
-          <button class="ls-answer" type="submit">
-            <img src="/assets/buttons/plain_button_big.svg" alt="" />
-            <span>{{this.label}}</span>
-          </button>
-        </form>
-      {{/each}}
-    </div>
-
-  </div>
-</div>
-</div>
-
-    {{> menu}}
-    
-  </body>
+      <script >
+        console.log("yo", {{{json question}}});
+      </script>
+   </body>
 </html>
