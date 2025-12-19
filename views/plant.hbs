@@ -41,23 +41,41 @@
       </div>
 
       <div class="plant-details">
+
         <div class="plant-image" style="position: relative;">
+          
+          {{#if plant.pot}}
+            <img src="{{plant.pot}}" class="plant-pot"/>
+          {{/if}}
+        
           <img src="/{{plant.plant_url}}" alt="{{plant.plant_family}}" width="150"/>
           <div class="low-water-popup" id="low-water-popup" style="display:none;"></div>
           <div class="thank-you-popup" id="thank-you-popup" style="display:none;"></div>
+          <div class="inventory-popup" id="inventory-popup" style="display:none;"></div>
+
         </div>
 
         <h1>{{#if plant.name}}{{plant.name}}{{else}}{{plant.plant_family}}{{/if}}</h1>
+
+
+        <div class="plant-actions flex row gap-1">
+          <button class="action-btn" id="inventory-btn">
+            Inventory
+          </button>
+        </div>
+
 
         <div class="status-bars">
           <div class="status-bar">
             <img id="water-bar-img" class="status-svgbar"
               src="/assets/status%20bar/water_{{plant.water_level}}.svg" alt="Water bar" />
           </div>
+
           <div class="status-bar">
             <img id="light-bar-img" class="status-svgbar"
               src="/assets/status%20bar/light_{{plant.light_level}}.svg" alt="Light bar" />
           </div>
+
           <div class="status-bar">
             <img id="temp-bar-img" class="status-svgbar"
               src="/assets/status%20bar/temp_{{plant.temp_level}}.svg" alt="Temperature bar" />
@@ -67,6 +85,7 @@
         <div class="plant-actions flex row gap-1">
           <button class="action-btn" id="water-btn">Water Plant <br>click for more</button>
         </div>
+
       </div>
 
       {{> menu}}
@@ -317,6 +336,62 @@
           console.error('Error rewarding user:', error);
         }
       }
+
+
+    const inventoryPopup = document.getElementById('inventory-popup');
+    const inventoryBtn = document.getElementById('inventory-btn');
+
+    function renderInventory() {
+      if (!userData.inventory || userData.inventory.length === 0) {
+        inventoryPopup.innerHTML = `
+          <h3>Inventory</h3>
+          <p>No items yet</p>
+          <button id="close-inventory">Close</button>
+        `;
+        return;
+      }
+
+      inventoryPopup.innerHTML = `
+        <h3>Inventory</h3>
+        <div class="inventory-items">
+          ${userData.inventory.map((item, index) => `
+            <div class="inventory-item">
+              <img src="${item.item_url}" width="60" />
+              <p>${item.item}</p>
+              <button data-index="${index}" class="equip-btn">Equip</button>
+            </div>
+          `).join('')}
+        </div>
+        <button id="close-inventory">Close</button>
+      `;
+    }
+
+
+    if (inventoryBtn) {
+      inventoryBtn.addEventListener('click', () => {
+        renderInventory();
+        inventoryPopup.style.display = 'block';
+      });
+    }
+
+    inventoryPopup.onclick = async (event) => {
+      if (event.target.id === 'close-inventory') {
+        inventoryPopup.style.display = 'none';
+      }
+
+      if (event.target.classList.contains('equip-btn')) {
+        const index = event.target.dataset.index;
+
+        await fetch(`/plants/${plantData.plant_id}/equip`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ inventoryIndex: index })
+        });
+
+        location.reload(); // simplest + matches your style
+      }
+    };
+
 
 
 

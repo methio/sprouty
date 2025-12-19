@@ -26,7 +26,7 @@
           "light_level": 4,
           "temp_level": 5,
           "level_scale": 5,
-          "pot": "",
+          "pot": "/assets/shop/tablecloth_shelf.svg",
           "reward_given": true
         },
         {

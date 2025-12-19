@@ -152,6 +152,63 @@ router.post('/user/reward-watering', function(req, res) {
   }
 });
 
+// equip item from inventory to plant
+router.post('/:id/equip', function(req, res) {
+  try {
+    const plantId = req.params.id;
+    const { inventoryIndex } = req.body;
+
+    const plantData = fs.readFileSync('public/databases/data-plants.json', 'utf8');
+    const plants = JSON.parse(plantData);
+
+    const userData = fs.readFileSync('public/databases/user.json', 'utf8');
+    const user = JSON.parse(userData);
+
+    const item = user.inventory[inventoryIndex];
+    if (!item) {
+      return res.status(400).send('Item not found');
+    }
+
+    // find plant
+    let targetPlant = null;
+    for (let shelf of plants.shelves) {
+      for (let plant of shelf.plants) {
+        if (plant.plant_id == plantId) {
+          targetPlant = plant;
+          break;
+        }
+      }
+      if (targetPlant) break;
+    }
+
+    if (!targetPlant) {
+      return res.status(404).send('Plant not found');
+    }
+
+    // apply item (pot)
+    targetPlant.pot = item.item_url;
+
+    // remove item from inventory
+    user.inventory.splice(inventoryIndex, 1);
+
+    fs.writeFileSync(
+      'public/databases/data-plants.json',
+      JSON.stringify(plants, null, 2)
+    );
+
+    fs.writeFileSync(
+      'public/databases/user.json',
+      JSON.stringify(user, null, 2)
+    );
+
+    res.sendStatus(200);
+  } catch (error) {
+    console.error('Equip error:', error);
+    res.status(500).send('Server error');
+  }
+});
+
+
 
 
 module.exports = router;
