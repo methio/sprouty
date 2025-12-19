@@ -11,46 +11,30 @@
     <link rel="stylesheet" type="text/css" href="/stylesheets/plants.css" />
 
     <script src="/javascripts/plants.js" defer></script>
-
-    <style>
-      /* Alert indicator styling */
-      .plant-wrapper {
-        position: relative;
-        display: inline-block;
-      }
-
-      .alert-indicator {
-        position: absolute;
-        top: -8px;
-        right: -8px;
-        background-color: #ff4444;
-        color: white;
-        border-radius: 50%;
-        width: 24px;
-        height: 24px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
-        font-size: 16px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        z-index: 10;
-      }
-    </style>
-
   </head>
-  <body>
+  <body class="home">
     <div id="container">
-      <h1>Plant list</h1>
+      <!-- Centered Home Title -->
+      <div class="home-title-container">
+        <div class="home-title-button">
+          <img src="/assets/buttons/plain_button_big.svg" alt="home title" class="home-title-bg" />
+          <span class="home-title-text">HOME</span>
+        </div>
+      </div>
     
+      <!-- Shelves Container -->
       <div id="shleves-container">
         {{#each plants.shelves}}
           <div class="shelve" id="{{this.shelf}}">
-            <div class="plants-container flex row gap-1 align-baseline">
+            <!-- Shelf SVG background -->
+            <img src="/assets/shelves/plain_shelf.svg" alt="shelf" class="shelf-background" />
+            
+            <!-- Plants and Add Button Container -->
+            <div class="plants-container">
               {{#each this.plants}}
               <div class="plant-wrapper">
                 <a href="/plants/{{this.plant_id}}" class="plant-card" id="plant-{{this.plant_id}}">
-                  <img src="{{this.plant_url}}" alt="plant image" width="30"/>
+                  <img src="{{this.plant_url}}" alt="plant image"/>
                 </a>
                 {{!-- Check if any level is <= 3 --}}
                 {{#if (or (lte this.water_level 3) (lte this.light_level 3) (lte this.temp_level 3))}}
@@ -58,14 +42,20 @@
                 {{/if}}
               </div>
               {{/each}}
+              
+              <!-- Add Plant Button - will automatically be on the right -->
               <button class="add-a-plant"
                       id="{{this.shelf}}-add-btn"
                       data-shelve="{{this.shelf}}">
-                <img src="/assets/buttons/add_button.svg" alt="add plant" width="30"/>
+                <img src="/assets/buttons/add_button.svg" alt="add plant"/>
               </button>
-              <div class="pop-up" id="{{this.shelf}}-add-pop-up">Bonjour tout le monde !</div>  
             </div>
+            
+            <!-- Shelf Label -->
             <h3>{{this.shelf}}</h3>
+            
+            <!-- Popup for adding plants -->
+            <div class="pop-up" id="{{this.shelf}}-add-pop-up">Bonjour tout le monde !</div>  
           </div>        
         {{/each}}
       </div>
@@ -90,8 +80,8 @@
       const popupsData = {
         first: `<h3>Add a new plant</h3>
                 <p>What family does your plant belong to?</p>
-                <div class="options-container flex row wrap gap-1">
-                  ${families.map(option =>`<button class="family-option-btn"><img src="${option.plant_url}" alt="${option.plant_family}" width="50"/><p>${option.plant_family}</p></button>`).join('')}
+                <div class="options-container">
+                  ${families.map(option =>`<button class="family-option-btn"><img src="${option.plant_url}" alt="${option.plant_family}"/><p>${option.plant_family}</p></button>`).join('')}
                 </div>`,
         second: `<h3>Add a new plant</h3>
                 <p>Name your plant</p>

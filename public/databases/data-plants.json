@@ -85,6 +85,23 @@
           "temp_level": "4",
           "level_scale": 5,
           "pot": ""
+        },
+        {
+          "plant_family": "Starlizia",
+          "plant_url": "assets/plants/Starlizia.svg",
+          "plant_id": 43171,
+          "name": "Kevin the II",
+          "sensor_number": 0,
+          "shelve": "kitchen"
+        },
+        {
+          "plant_family": "Cactus",
+          "plant_url": "assets/plants/Cactus.svg",
+          "plant_id": 12427,
+          "name": "Bobby",
+          "sensor_number": 0,
+          "reward_given": false,
+          "shelve": "kitchen"
         }
       ]
     }
